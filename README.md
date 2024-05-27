@@ -21,12 +21,21 @@
 
 An SAP Fiori application.
 
-### Starting the generated app
+### Starting the  app
 
--   This app has been generated using the SAP Fiori tools - App Generator, as part of the SAP Fiori tools suite.  In order to launch the generated app, simply run the following from the generated app root folder:
-
+-   Clone the repository
 ```
-    npm start
+https://LESER-The-Safety-Valve@dev.azure.com/LESER-The-Safety-Valve/SC%20-%20Web%20UI/_git/SC%20-%20Web%20UI
+```
+
+-   Install dependencies
+```
+npm install
+```
+
+-   Launch the app
+```
+    npm run start-noflp
 ```
 
 - It is also possible to run the application using mock data that reflects the OData Service URL supplied during application generation.  In order to run the application with Mock Data, run the following from the generated app root folder:
