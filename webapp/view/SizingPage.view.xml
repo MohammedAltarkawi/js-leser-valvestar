@@ -1,0 +1,349 @@
+<mvc:View
+    height="100%"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:core="sap.ui.core"
+    xmlns:u="sap.ui.unified"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:l="sap.ui.layout"
+    xmlns:f="sap.ui.layout.form"
+    xmlns="sap.m"
+    xmlns:customControl="com.leser.valvestar.customControls"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    controllerName="com.leser.valvestar.controller.SizingPage"
+    xmlns:fg="sap.f"
+>
+    <Page
+        id="sizingPage"
+        class="vcBackgroundPage outlineDeactivate"
+        showHeader="false"
+        enableScrolling="false"
+    >
+        <content>
+            <FlexBox
+                id="fbSizing"
+                alignContent="Start"
+                alignItems="Baseline"
+                justifyContent="Center"
+                class="vcBackgroundPage"
+                height="100%"
+                width="100%"
+                wrap="Wrap"
+            >
+                <HBox
+                    id="hbSizing"
+                    class="vcBackgroundPage"
+                    height="100%"
+                >
+                    <VBox id="vbSizing">
+                        <VBox class="vcBackgroundPage">
+                            <Title
+                                text="{applicationData>/i18n/sizing}"
+                                class="vcFontSegheader sapUiTinyMarginBottom sapUiSmallMarginTop"
+                            />
+                            <SegmentedButton
+                                id="sbWizExp"
+                                class="vcSizingSegBtn vcRadiusSegBtnFirst vcRadiusSegBtnLast"
+                                width="300px"
+                                selectionChange="toggleSizingView"
+                            >
+                                <items>
+                                    <SegmentedButtonItem
+                                        text="{applicationData>/i18n/wizardView}"
+                                        key="01"
+                                    />
+                                    <SegmentedButtonItem
+                                        text="{applicationData>/i18n/expertView}"
+                                        key="02"
+                                    />
+                                </items>
+                            </SegmentedButton>
+                            <layoutData>
+                                <FlexItemData
+                                    styleClass="sapUiTinyMarginBottom vcViewTypeSegmentButton"
+                                    minHeight="6rem"
+                                />
+                            </layoutData>
+                        </VBox>
+                        <VBox
+                            id="messageVBox"
+                            class="sapUiSmallMarginBottom sapUiContentPadding messageBox"
+                            width="100%"
+                            visible="{path: 'applicationData>/state', formatter: '.formatter.getMessageBoxVisibleByState'}"
+                        >
+                            <ScrollContainer
+                                height="150px"
+                                width="100%"
+                                vertical="true"
+                                focusable="true"
+                            >
+                                <Title
+                                    class="messageBoxTitle"
+                                    titleStyle="H2"
+                                    level="H2"
+                                    text="{path: 'applicationData>/instanceInfo/messages/results', formatter: '.formatter.getMessageCount'}"
+                                >
+                                    <layoutData>
+                                        <FlexItemData
+                                            minWidth="100%"
+                                            styleClass="sapUiSmallMarginBottom"
+                                        />
+                                    </layoutData>
+                                </Title>
+                                <VBox
+                                    items="{path: 'applicationData>/instanceInfo/messages/results'}"
+                                    width="100%"
+                                >
+                                    <VBox width="100%">
+                                        <Text
+                                            class="messageBoxMessage"
+                                            text="{path: 'applicationData>', formatter: '.formatter.getMessageText'}"
+                                            visible="{path: 'applicationData>', formatter: '.formatter.getMessageTextHidden'}"
+                                        >
+                                            <layoutData>
+                                                <FlexItemData
+                                                    minWidth="100%"
+                                                    styleClass="sapUiTinyMarginBottom"
+                                                />
+                                            </layoutData>
+                                        </Text>
+                                        <Link
+                                            class="messageBoxLink"
+                                            validateUrl="false"
+                                            wrapping="false"
+                                            emphasized="false"
+                                            text="{path: 'applicationData>', formatter: '.formatter.getMessageLinkText'}"
+                                            visible="{path: 'applicationData>', formatter: '.formatter.getMessageLinkHidden'}"
+                                            href="#"
+                                            press="onLinkPressed"
+                                        >
+                                            <customData>
+                                                <core:CustomData
+                                                    key="atnam"
+                                                    value="{path: 'applicationData>', formatter: '.formatter.getAtnam'}"
+                                                />
+                                            </customData>
+                                            <layoutData>
+                                                <FlexItemData minWidth="100%" />
+                                            </layoutData>
+                                        </Link>
+                                    </VBox>
+                                    <layoutData>
+                                        <FlexItemData minWidth="100%" />
+                                    </layoutData>
+                                </VBox>
+                            </ScrollContainer>
+                        </VBox>
+                        <VBox
+                            id="sizingStatusVBoxIncl"
+                            class="vcBackgroundPage"
+                            width="100%"
+                        >
+                            <customControl:SizingStatusDonut
+                                id="stateDonutChartIncl"
+                                title="{applicationData>/i18n/sizingStatus}"
+                                infoTitle="{parts: [ {path: 'applicationData>/selectionProducts'}, {path: 'applicationData>/currentConfiguration'}, {path: 'applicationData>/state'} ], formatter: '.formatter.getStateChartInfoTitle'}"
+                                info="{parts: [{path: 'applicationData>/selectionProducts'},{path: 'applicationData>/currentConfiguration'},{path: 'applicationData>/state'}], formatter: '.formatter.getStateChartInfo'}"
+                                progress="{path: 'applicationData>/selectionProducts', formatter: '.formatter.getStateChartProgressBySelectionProducts'}"
+                                state="{path: 'applicationData>/state', formatter: '.formatter.getStateChartState'}"
+                            >
+                                <customControl:layoutData>
+                                    <FlexItemData
+                                        styleClass="statusDonutBackgroundWhite"
+                                    />
+                                </customControl:layoutData>
+                            </customControl:SizingStatusDonut>
+                            <Button
+                                class="sapUiTinyMarginBottom vcButtonBlue"
+                                type="Emphasized"
+                                width="90%"
+                                text="{applicationData>/i18n/goToSelection}"
+                                visible="{path: 'applicationData>/selectionProducts', formatter: '.formatter.getButtonStateBySelectionProducts'}"
+                                press="navigateToSelection"
+                            >
+                                <layoutData>
+                                    <FlexItemData
+                                        minWidth="90%"
+                                        styleClass="statusDonutToSelectionButton"
+                                    />
+                                </layoutData>
+                            </Button>
+                        </VBox>
+                        <FlexBox
+                            alignItems="End"
+                            justifyContent="SpaceBetween"
+                        >
+                            <VBox>
+                                <Link
+                                    id="expandLink"
+                                    class="tvcExpandLink"
+                                    visible="{= ${application>/customizing/sizingViewType} === '01' }"
+                                    press="expandCollapseAll"
+                                />
+                            </VBox>
+                            <VBox class="sapUiTinyMarginBottom alignEnd">
+                                <Text
+                                    class="fontStandardMand"
+                                    text="{applicationData>/i18n/mandFields}"
+                                />
+                            </VBox>
+                        </FlexBox>
+                        <VBox
+                            id="sizingCharactGroupVBox"
+                            items="{path: 'applicationData>/characteristicCategories/1/characteristicGroups/results'}"
+                            class="vcBackgroundPage characteristicVBoxMarginBottom"
+                            width="100%"
+                            visible="{= ${sizingModel>/mode} === '01' ? true : false }"
+                        >
+                            <Panel
+                                class="vcBackgroundPageWhite sapUiSmallMarginBottom vcPanel customGroupingPanel"
+                                expandable="false"
+                                expanded="true"
+                                expandAnimation="false"
+                                expand="expandCharacteristicGroup"
+                            >
+                                <headerToolbar>
+                                    <OverflowToolbar height="5rem">
+                                        <VBox>
+                                            <Text
+                                                class="vcPanelText"
+                                                visible="true"
+                                                text="{path: 'applicationData>', formatter: '.formatter.getPanelCount'}"
+                                            />
+                                            <HBox>
+                                                <Title
+                                                    text="{applicationData>VALUE_DISP}"
+                                                    class="vcPanelTitle"
+                                                />
+                                                <Button
+                                                    type="Transparent"
+                                                    icon="sap-icon://sys-help-2"
+                                                    visible="{path: 'applicationData>INFO', formatter: '.formatter.showHelpButtonByInfoText'}"
+                                                    press="showCharacteristicInfoText"
+                                                    class="vcCharHelpButton"
+                                                >
+                                                    <layoutData>
+                                                        <FlexItemData
+                                                            styleClass="vcCharHelpButtonData"
+                                                        />
+                                                    </layoutData>
+                                                    <dependents>
+                                                        <core:Item
+                                                            key="characteristic"
+                                                        />
+                                                    </dependents>
+                                                </Button>
+                                            </HBox>
+                                        </VBox>
+                                    </OverflowToolbar>
+                                </headerToolbar>
+                                <VBox
+                                    items="{path: 'applicationData>groupings/results', factory: '.groupingControlFactory', templateShareable: true}"
+                                    alignItems="Baseline"
+                                />
+                                <Button
+                                    class="vcButtonBlue"
+                                    text="{applicationData>/i18n/nextStep}"
+                                    type="Emphasized"
+                                    press="onNextStep"
+                                    visible="true"
+                                />
+                                <layoutData>
+                                    <FlexItemData
+                                        minWidth="100%"
+                                        styleClass="sapUiMediumMarginEnd"
+                                    />
+                                </layoutData>
+                            </Panel>
+                        </VBox>
+                        <grid:CSSGrid
+                            id="expertform"
+                            width="99%"
+                            visible="{= ${sizingModel>/mode} === '02' ? true : false }"
+                            gridAutoFlow="RowDense"
+                            gridTemplateColumns="1fr 1fr"
+                            gridTemplateRows="auto"
+                            gridGap="0.5rem"
+                        >
+                            <VBox
+                                id="sizingExpL"
+                                class="characteristicExp"
+                            />
+                            <VBox id="sizingExpR" />
+                        </grid:CSSGrid>
+                        <layoutData>
+                            <FlexItemData
+                                styleClass="sapUiMediumMarginEnd vcCharacteristicContent"
+                            />
+                        </layoutData>
+                    </VBox>
+                    <VBox
+                        id="sizingStatusVBox"
+                        class="vcBackgroundPage"
+                        width="30rem"
+                    >
+                        <VBox id="emptyBox" />
+                        <customControl:SizingStatusDonut
+                            id="stateDonutChart"
+                            title="{applicationData>/i18n/sizingStatus}"
+                            infoTitle="{parts: [ {path: 'applicationData>/selectionProducts'}, {path: 'applicationData>/currentConfiguration'}, {path: 'applicationData>/state'} ], formatter: '.formatter.getStateChartInfoTitle'}"
+                            info="{parts: [{path: 'applicationData>/selectionProducts'},{path: 'applicationData>/currentConfiguration'},{path: 'applicationData>/state'}], formatter: '.formatter.getStateChartInfo'}"
+                            progress="{path: 'applicationData>/selectionProducts', formatter: '.formatter.getStateChartProgressBySelectionProducts'}"
+                            state="{path: 'applicationData>/state', formatter: '.formatter.getStateChartState'}"
+                        >
+                            <customControl:layoutData>
+                                <FlexItemData
+                                    styleClass="statusDonutBackgroundWhite"
+                                />
+                            </customControl:layoutData>
+                        </customControl:SizingStatusDonut>
+                        <Button
+                            id="btnGoToSelection"
+                            class="sapUiTinyMarginBottom vcButtonBlue"
+                            type="Emphasized"
+                            width="90%"
+                            visible="{path: 'applicationData>/selectionProducts', formatter: '.formatter.getButtonStateBySelectionProducts'}"
+                            press="navigateToSelection"
+                        >
+                            <layoutData>
+                                <FlexItemData
+                                    minWidth="90%"
+                                    styleClass="statusDonutToSelectionButton"
+                                />
+                            </layoutData>
+                        </Button>
+                        <Button
+                            id="saveBtn"
+                            class="sapUiTinyMarginBottom vcButtonBlue"
+                            type="Emphasized"
+                            width="90%"
+                            icon="sap-icon://synchronize"
+                            visible="{= ${applicationData>/expertSaveMode} &amp;&amp; ${application>/customizing/sizingViewType} === '02'}"
+                            press="saveChanges"
+                        >
+                            <layoutData>
+                                <FlexItemData
+                                    minWidth="90%"
+                                    styleClass="statusDonutToSelectionButton"
+                                />
+                            </layoutData>
+                        </Button>
+                        <List
+                            headerText="Supporting Documents"
+                            visible="{= ${application>/supportingDocuments}.length === 0 ? false : true }"
+                            items="{ path: 'application>/supportingDocuments' }"
+                            class="styleLBDocuments"
+                        >
+                            <CustomListItem class="listItemTransparent">
+                                <Link
+                                    text="{application>title}"
+                                    href="{application>link}"
+                                    class="styleDocumentLinks"
+                                />
+                            </CustomListItem>
+                        </List>
+                    </VBox>
+                </HBox>
+            </FlexBox>
+        </content>
+    </Page>
+</mvc:View>

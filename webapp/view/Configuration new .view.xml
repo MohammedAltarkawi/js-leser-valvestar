@@ -1,0 +1,217 @@
+<mvc:View xmlns:f="sap.f" id="configurationPages"
+    xmlns:layout="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns="sap.m" controllerName="com.leser.valvestar.controller.Configuration"
+    xmlns:l="sap.ui.layout">
+    <Page id="configurationPage" class="outlineDeactivate" showHeader="false"
+        enableScrolling="false">
+        <content>
+            <l:ResponsiveSplitter id="rsSelPage" defaultPane="default"
+                class="splitterBarColor contentNotScrollable">
+                <l:PaneContainer id="pnContSelPage">
+                    <l:SplitPane>
+                        <Panel id="pnTiles" height="100%"
+                            class="splitLayoutPanelStyle vcBackgroundPage sapUiSmallMarginBottom vcPanel">
+                            <VBox width="100%" alignContent="Center" alignItems="Center"
+                                justifyContent="Center" height="100%">
+                                <items>
+                                    <VBox id="vbProdKonf"
+                                        class="vcBackgroundPage vcConfigurationPage" width="100%"
+                                        height="100%">
+                                        <core:Fragment
+                                            fragmentName="com.leser.valvestar.fragment.ManditoryText"
+                                            type="XML" />
+                                        <VBox visible="true">
+                                            <HBox id="grpButtons"
+                                                items="{path: 'applicationData>/characteristicGroups'}"
+                                                class="vcBackgroundPage characteristicVBoxMarginBottom">
+                                                <Button text="{applicationData>VALUE_DISP}"
+                                                    width="100%"
+                                                    class="vcButtonProdKonf vcButtonGrey"
+                                                    press="onGrpChange"
+                                                    visible="{applicationData>IS_TAB}">
+                                                    <customData>
+                                                        <core:CustomData key="grpId"
+                                                            value="{applicationData>GRUPPE}" />
+                                                    </customData>
+                                                </Button>
+                                            </HBox>
+                                            <layout:Grid id="sizingCharactGroupVBox"
+                                                defaultSpan="XL5 L5 M5 S5">
+                                                <IconTabBar expandable="false"
+                                                    items="{path: 'applicationData>/characteristicGroups'}">
+                                                    <items>
+                                                        <IconTabFilter
+                                                            text="{applicationData>VALUE_DISP}">
+                                                            <Panel
+                                                                class="vcPanelHideExpand sapUiSmallMarginBottom vcPanelKonfig customGroupingPanel"
+                                                                expandable="true" expanded="true"
+                                                                expandAnimation="false"
+                                                                expand="expandCharacteristicGroup"
+                                                                visible="true">
+                                                                <headerToolbar>
+                                                                    <OverflowToolbar>
+                                                                        <VBox>
+                                                                            <HBox>
+                                                                                <Title
+                                                                                    text="{applicationData>VALUE_DISP}"
+                                                                                    class="vcPanelTitle" />
+                                                                                <Button
+                                                                                    icon="sap-icon://sys-help-2"
+                                                                                    visible="{path: 'applicationData>', formatter: '.formatter.getInfoHelpButtonVisible'}"
+                                                                                    press="showCharacteristicInfoText"
+                                                                                    class="vcCharHelpButtonData tvcInfoButton configHelpButton" />
+                                                                            </HBox>
+                                                                        </VBox>
+                                                                    </OverflowToolbar>
+                                                                </headerToolbar>
+                                                                <grid:CSSGrid
+                                                                    items="{path: 'applicationData>groupings/results', templateShareable:false}"
+                                                                    class="vcBackGroundConfig box1 konfigGrid"
+                                                                    id="KonfigGrid">
+                                                                    <grid:customLayout>
+                                                                        <grid:GridResponsiveLayout>
+                                                                            <grid:layout>
+                                                                                <grid:GridSettings
+                                                                                    gridTemplateColumns="repeat(1, auto-fit)" />
+                                                                            </grid:layout>
+                                                                            <grid:layoutXL>
+                                                                                <grid:GridSettings
+                                                                                    gridTemplateColumns="repeat(auto-fit, 6rem)" />
+                                                                            </grid:layoutXL>
+                                                                        </grid:GridResponsiveLayout>
+                                                                    </grid:customLayout>
+                                                                    <VBox>
+                                                                        <layoutData>
+                                                                            <grid:ResponsiveColumnItemLayoutData
+                                                                                columns="6" rows="2" />
+                                                                        </layoutData>
+                                                                        <Title
+                                                                            text="{applicationData>DESCRIPTION}"
+                                                                            class="sapUiTinyMargin" />
+                                                                        <VBox
+                                                                            items="{path: 'applicationData>characteristics/results', factory: '.createCharacteristicControlConfig', templateShareable: true}"
+                                                                            alignItems="Baseline"
+                                                                            width="100%"
+                                                                            class="configBox" />
+                                                                    </VBox>
+                                                                </grid:CSSGrid>
+                                                                <layoutData>
+                                                                    <FlexItemData minWidth="100%"
+                                                                        styleClass="sapUiMediumMarginEnd" />
+                                                                </layoutData>
+                                                            </Panel>
+                                                        </IconTabFilter>
+                                                    </items>
+                                                </IconTabBar>
+                                            </layout:Grid>
+                                        </VBox>
+                                    </VBox>
+                                </items>
+                            </VBox>
+                        </Panel>
+                    </l:SplitPane>
+                    <l:SplitPane id="spSizingData">
+                        <Panel id="pnSizingData" height="100%"
+                            class="splitLayoutPanelStyle vcBackgroundPage sapUiSmallMarginBottom">
+                            <IconTabBar expandable="false">
+                                <items>
+                                    <IconTabFilter text="{applicationData>/i18n/Configuration}">
+                                        <VBox>
+                                            <FlexBox justifyContent="End">
+                                                <FlexBox class="trafficLightContainer">
+                                                    <core:Icon class="trafficLight"
+                                                        color="{applicationData>/trafficLight/red}"
+                                                        src="sap-icon://color-fill" />
+                                                    <core:Icon class="trafficLight"
+                                                        color="{applicationData>/trafficLight/yellow}"
+                                                        src="sap-icon://color-fill" />
+                                                    <core:Icon class="trafficLight"
+                                                        color="{applicationData>/trafficLight/green}"
+                                                        src="sap-icon://color-fill" />
+                                                </FlexBox>
+                                            </FlexBox>
+                                            <Table class="headerCharTable">
+                                                <columns>
+                                                    <Column>
+                                                        <Label text="Name" />
+                                                    </Column>
+                                                    <Column>
+                                                        <Label text="Value" />
+                                                    </Column>
+                                                </columns>
+                                                <items>
+                                                    <ColumnListItem class="tableHeaderKonfig">
+                                                        <FormattedText
+                                                            htmlText="{applicationData>/i18n/articleNoKonf}:" />
+                                                        <FormattedText
+                                                            htmlText="{applicationData>/bom/1/BOM_COMPNT}" />
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
+                                            <Table class="headerCharTable"
+                                                items="{path: 'applicationData>/currentConfigurationForKonfig'}">
+                                                <columns>
+                                                    <Column>
+                                                        <Label text="Name" />
+                                                    </Column>
+                                                    <Column>
+                                                        <Label text="Value" />
+                                                    </Column>
+                                                </columns>
+                                                <items>
+                                                    <ColumnListItem class="tableHeaderKonfig">
+                                                        <FormattedText
+                                                            htmlText="{applicationData>key}" />
+                                                        <FormattedText
+                                                            htmlText="{applicationData>text}" />
+                                                    </ColumnListItem>
+                                                </items>
+                                            </Table>
+                                        </VBox>
+                                    </IconTabFilter>
+                                    <IconTabFilter text="{applicationData>/i18n/Documents}">
+                                        <VBox>
+                                            <FlexBox items="{applicationData>/currentConfiguration}"
+                                                direction="Column">
+                                                <items>
+                                                    <HBox>
+                                                        <VBox
+                                                            visible="{= ${applicationData>CHAR_DOCU} || ${applicationData>CVAL_DOCU} ? true : false}"
+                                                            class="documentLinksBox">
+                                                            <FormattedText
+                                                                htmlText="{= ${applicationData>CHAR_DOCU} ? '• ' : ''}"
+                                                                visible="{= ${applicationData>CHAR_DOCU} ? true : false}"
+                                                                class="sapUiTinyMarginBottom" />
+                                                            <FormattedText
+                                                                htmlText="{= ${applicationData>CVAL_DOCU} ? '• ' : ''}"
+                                                                visible="{= ${applicationData>CVAL_DOCU} ? true : false}"
+                                                                class="sapUiTinyMarginBottom" />
+                                                        </VBox>
+                                                        <VBox
+                                                            visible="{= ${applicationData>CHAR_DOCU} || ${applicationData>CVAL_DOCU} ? true : false}">
+                                                            <FormattedText
+                                                                htmlText="{applicationData>CHAR_DOCU}"
+                                                                visible="{= ${applicationData>CHAR_DOCU} ? true : false}"
+                                                                class="sapUiTinyMarginBottom" />
+                                                            <FormattedText
+                                                                htmlText="{applicationData>CVAL_DOCU}"
+                                                                visible="{= ${applicationData>CVAL_DOCU} ? true : false}"
+                                                                class="sapUiTinyMarginBottom" />
+                                                        </VBox>
+                                                    </HBox>
+                                                </items>
+                                            </FlexBox>
+                                        </VBox>
+                                    </IconTabFilter>
+                                </items>
+                            </IconTabBar>
+                        </Panel>
+                    </l:SplitPane>
+                </l:PaneContainer>
+            </l:ResponsiveSplitter>
+        </content>
+    </Page>
+</mvc:View>

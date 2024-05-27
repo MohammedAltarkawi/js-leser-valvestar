@@ -1,0 +1,24 @@
+# yaml-language-server: $schema=https://sap.github.io/ui5-tooling/schema/ui5.yaml.json
+
+specVersion: "3.1"
+metadata:
+  name: com.leser.valvestar
+type: application
+builder:
+  resources:
+    excludes:
+      - /test/**
+      - /localService/**
+  customTasks:
+    - name: deploy-to-abap
+      afterTask: generateCachebusterInfo
+      configuration:
+        target:
+          url: http://vsaptest.leser.com:8000/
+          client: "100"
+        app:
+          name: ZVC_VALVESTAR
+          package: ZTVC_UI
+          transport: T11K972229
+        exclude:
+          - /test/

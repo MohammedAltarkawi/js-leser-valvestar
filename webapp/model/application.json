@@ -1,0 +1,88 @@
+{
+    "customizing": {
+        "sizingViewType": "01"
+    },
+    "controls": {},
+
+    "busiIndicator": {},
+
+    "visibility": {
+        "resultTechnicalData": false
+    },
+
+    "characteristicControls": {},
+
+    "supportingDocuments": [],
+
+    "urlParameter": {
+        "allowed": [
+            "CONFIGUUID",
+            "CONFIGID",
+            "VKORG",
+            "KUNNR",
+            "VTWEG",
+            "SPART",
+            "AUART",
+            "WERKS",
+            "DATUM",
+            "MATNR",
+            "SAP-UI-LANGUAGE",
+            "SAP-LANGUAGE",
+            "PRODUCTID",
+            "SAPGUID",
+            "VARIANTS",
+            "INTERN",
+            "KWMENG",
+            "BASKETID",
+            "LOADNEW",
+            "SPRAS",
+            "ui5Authtoken",
+            "UI5AUTHTOKEN",
+            "VIEW",
+            "view",
+            "screen",
+            "SCREEN",
+            "EXPVIEW",
+            "expview"
+        ],
+        "setted": {}
+    },
+
+    "target": {
+        "branches": "/branchesSet",
+        "characteristicCategory": "/characteristicCategorySet",
+        "characteristicGroup": "/characteristicGroupSet",
+        "characteristics": "/characteristicsSet",
+        "characteristicValues": "/characteristicValuesSet",
+        "configMultilevel": "/configMultilevelSet",
+        "config": "/configSet",
+        "configSingle": "/config",
+        "configStatus": "/configStatusSet",
+        "configSuggestions": "/configSuggestionsSet",
+        "configValueChange": "/configValueChangeSet",
+        "currentConfiguration": "/currentConfigSet",
+        "requiredCharacteristics": "/requiredCharacteristicsSet",
+        "customizing": "/customizingSet",
+        "downloadFiles": "/downloadFilesSet",
+        "downloadFilesItems": "/downloadFilesItemsSet",
+        "i18n": "/i18nSet",
+        "languageSet": "/languageSet",
+        "price": "/priceSet",
+        "productCategories": "/productCategoriesSet",
+        "productFinding": "/productFindingsSet",
+        "productGroups": "/productGroupsSet",
+        "products": "/productsSet",
+        "visualization": "/visualizationSet",
+        "salesBom": "/salesBomItemSet",
+        "instanceInfo": "/InstanceInfoSet",
+        "basket": "/basketSet",
+        "basketItems": "/basketItemsSet",
+        "salesOrders": "/salesOrderHeaderSet",
+        "salesOrderItems": "/salesOrderItemsSet",
+        "salesOrder": "/salesOrderHeaderSet('number')/",
+        "valueHelps": "/ValueHelpSet"
+    },
+
+    "expViewCtrls": [],
+    "expTitleCtrls": []
+}

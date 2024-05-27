@@ -1,0 +1,62 @@
+{
+    "infoText": {},
+    "i18n": {},
+    "languageSet": [],
+    "sizingMaterialData": {},
+    "characteristicCategories": {},
+    "characteristicGroupsExpL": {},
+    "characteristicGroupsExpR": {},
+    "salesOrders": {},
+    "characteristicCategoryGroups": {},
+    "salesOrder": {},
+    "selectedProject": {},
+    "valueHelpsProject": {},
+    "valueHelpsApplication": {},
+    "valueHelpsEnd_User": {},
+    "items": {},
+    "currentConfiguration": [],
+    "createProjectValueHelps": {},
+    "currentConfigurationForSelection": [],
+    "selectionProducts": [],
+    "expertSaveMode": false,
+    "changedData": [],
+    "configurationInformation": {
+        "currentInstance": null,
+        "state": null,
+        "currentId": null,
+        "productName": null,
+        "productDescription": null,
+        "productText": null,
+        "characteristicName": null,
+        "characteristicDescription": null,
+        "characteristicLongtext": null,
+        "characteristicImage": null,
+        "productImage": {
+            "src": null,
+            "description": null
+        }
+    },
+    "searchField": {
+        "value": null
+    },
+    "instanceInfo": {
+        "messages": {
+            "results": []
+        }
+    },
+    "state": "",
+    "saveBtn": {
+        "active": false,
+        "visible": false
+    },
+    "saved": false,
+    "busyStart": false,
+    "isExistingConfigUUID": false,
+    "isExistingConfigID": false,
+    "trafficLight": {
+        "red": "transparent",
+        "yellow": "transparent",
+        "green": "transparent"
+    },
+    "isAllExpnded": false
+}

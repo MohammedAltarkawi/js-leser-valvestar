@@ -1,0 +1,894 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="1.0" xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx" xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" xmlns:sap="http://www.sap.com/Protocols/SAPData">
+    <edmx:DataServices m:DataServiceVersion="2.0">
+        <Schema Namespace="TVC.VC_UI5_V2_SRV" xml:lang="de" sap:schema-version="1" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+            <EntityType Name="branches" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TILE_ID"/>
+                </Key>
+                <Property Name="TILE_ID" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Numerisch 8stellig" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ICON" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TITLE" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Char" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="INFO" Type="Edm.String" Nullable="false" MaxLength="80" sap:unicode="false" sap:label="Char80" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="URL zum Bild" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="configMultilevel" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CONFIG_SELF"/>
+                </Key>
+                <Property Name="CONFIG_SELF" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz Self" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CONFIG_ROOT" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz Root" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CONFIG_PARENT" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz Parent" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BOM_COMPNT" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ITEM_NO" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Position" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STAGE" Type="Edm.Decimal" Nullable="false" Precision="2" Scale="0" sap:unicode="false" sap:label="Stufe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MAT_TEXT" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STATUS" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Konfigurationsstatus" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IS_SELECTED" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Ja / Nein" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PRICE_GUID" Type="Edm.String" Nullable="false" MaxLength="22" sap:unicode="false" sap:label="Price GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="configStatus" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="INSTANCE"/>
+                </Key>
+                <Property Name="INSTANCE" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STATUS" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Konfigurationsstatus" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="configSuggestions" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="VMATN"/>
+                </Key>
+                <Property Name="VMATN" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Variante" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VMATN_DESC" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VISIBLE" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="sichtbar" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CONFIGURED" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Einstelliges Kennzeichen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SHOW_PRICE" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Einstelliges Kennzeichen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="columns" Relationship="TVC.VC_UI5_V2_SRV.ConfigSuggestionsToConfigSuggestColumns" FromRole="FromRole_ConfigSuggestionsToConfigSuggestColumns" ToRole="ToRole_ConfigSuggestionsToConfigSuggestColumns"/>
+                <NavigationProperty Name="values" Relationship="TVC.VC_UI5_V2_SRV.ConfigSuggestionsToConfigSuggestValues" FromRole="FromRole_ConfigSuggestionsToConfigSuggestValues" ToRole="ToRole_ConfigSuggestionsToConfigSuggestValues"/>
+            </EntityType>
+            <EntityType Name="currentConfig" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ATNAM"/>
+                    <PropertyRef Name="ATWRT"/>
+                </Key>
+                <Property Name="GRUPPE" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Merkmalgruppe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATNAM" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Merkmalname" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATBEZ" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Merkmalbezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATWRT" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Merkmalwert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATWTB" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Merkmalswert Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IMG_URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="URL zur Bilddatei" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CHAR_DOCU" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Ergänzende Dokumentation zum Merkmal" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CVAL_DOCU" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Ergänzende Dokumentation zum Merkmalswert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="downloadFiles" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Characterfeld der Länge 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="items" Relationship="TVC.VC_UI5_V2_SRV.DownloadFilesToDownloadFilesItems" FromRole="FromRole_DownloadFilesToDownloadFilesItems" ToRole="ToRole_DownloadFilesToDownloadFilesItems"/>
+            </EntityType>
+            <EntityType Name="i18n" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="char 120" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Gross and Klein Charakterfeld der Länge255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="language" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="LAISO"/>
+                </Key>
+                <Property Name="LAISO" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Sprache (ISO)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Beschreibung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="materialGroups" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAV_KEY" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAV_NAME" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAV_PATH" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="URL zum Bild" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="parameter" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CONFIG_ID"/>
+                </Key>
+                <Property Name="CONFIG_ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="CONFIG_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MODEL_ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="MODEL_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LEVEL1" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="LEVEL1" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MATNR" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="MATNR" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WERKS" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="WERKS" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AUART" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="AUART" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VKORG" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VKORG" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VTWEG" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VTWEG" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SPART" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="SPART" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="KUNNR" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="KUNNR" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DATUM" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="DATUM" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LANGUAGE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="LANGUAGE" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VMATN" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="VMATN" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MAT_GROUP_ID" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="MAT_GROUP_ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SAPGUI" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Feld zum Ankreuzen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="INTERN" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Feld zum Ankreuzen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="price" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="INSTANCE"/>
+                </Key>
+                <Property Name="INSTANCE" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PRICE" Type="Edm.String" Nullable="false" MaxLength="21" sap:unicode="false" sap:label="netwert_bi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CURR" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Belegwährung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="PRICE_STRING" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Preis + Währung als String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="productCategories" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAV_KEY" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAV_NAME" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAV_PATH" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="URL zum Bild" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="productGroups" Relationship="TVC.VC_UI5_V2_SRV.ProductCategoriesToProductGroups" FromRole="FromRole_ProductCategoriesToProductGroups" ToRole="ToRole_ProductCategoriesToProductGroups"/>
+            </EntityType>
+            <EntityType Name="productGroups" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAV_KEY" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAV_NAME" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAV_PATH" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="char255" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="URL zum Bild" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="products" Relationship="TVC.VC_UI5_V2_SRV.ProductGroupsToProducts" FromRole="FromRole_ProductGroupsToProducts" ToRole="ToRole_ProductGroupsToProducts"/>
+            </EntityType>
+            <EntityType Name="products" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pfid"/>
+                    <PropertyRef Name="TileId"/>
+                </Key>
+                <Property Name="Pfid" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Produktfindung ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TileId" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Kachel ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubPfid" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="ProdFind. Subitem ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubKid" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Konfig Subitem ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ImgUrl" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="characteristicGroup" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GRUPPE"/>
+                </Key>
+                <Property Name="GRUPPE" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Merkmalgruppe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="INFO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Zusätzlicher Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" Nullable="false" MaxLength="250" sap:unicode="false" sap:label="Beschreibung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALUE_DISP" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Im UI angezeigte Wert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Kommentar" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IS_TAB" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Ist ein Tab (Registerkarte)" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="groupings" Relationship="TVC.VC_UI5_V2_SRV.CharacteristicGroupToGroupings" FromRole="FromRole_CharacteristicGroupToGroupings" ToRole="ToRole_CharacteristicGroupToGroupings"/>
+                <NavigationProperty Name="characteristics" Relationship="TVC.VC_UI5_V2_SRV.CharacteristicGroupToCharacteristics" FromRole="FromRole_CharacteristicGroupToCharacteristics" ToRole="ToRole_CharacteristicGroupToCharacteristics"/>
+            </EntityType>
+            <EntityType Name="characteristics" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GRUPPE"/>
+                    <PropertyRef Name="ATNAM"/>
+                </Key>
+                <Property Name="GRUPPE" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Merkmalgruppe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATNAM" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Merkmal" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATBEZ" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALUE_DISP" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Im UI angezeigte Wert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PLACEHOLDER" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Platzhalter" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="RATED" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Einstelliges Kennzeichen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LAYOUT" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="MM_Layout" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATNAM_DISCR_TYPE" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Darstellung Merkmalbezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="OBLIGATORY" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Pflicht" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NO_INPUT" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Nicht Eingabebereit" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NO_DISPLAY" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Ausgeblendet" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Kommentar" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="URL für Bild Merkmal" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="INFO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Zusätzlicher Text" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TECH_VAL" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Darstellung Merkmalswert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VIEW_ID" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="View ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="values" Relationship="TVC.VC_UI5_V2_SRV.CharacteristicsToCharacteristicValues" FromRole="FromRole_CharacteristicsToCharacteristicValues" ToRole="ToRole_CharacteristicsToCharacteristicValues"/>
+            </EntityType>
+            <EntityType Name="characteristicValues" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GRUPPE"/>
+                    <PropertyRef Name="ATNAM"/>
+                    <PropertyRef Name="ATWRT"/>
+                </Key>
+                <Property Name="GRUPPE" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Merkmalgruppe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATNAM" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Merkmal" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATWRT" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Merkmalwert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATWTB" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATWRT_DISP" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Merkmalwert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Bezeichnung zum Merkmalwert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="INFO" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Info zum Merkmalwert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="URL zum Bild" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IS_SELECTED" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="ALV: Bool'sches Flag" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Kommentar" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="basket" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GUID"/>
+                </Key>
+                <Property Name="GUID" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Globally Unique Identifier" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BASKET_ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Warenkorb ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NOTICE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Notiz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NOTICE_OPT" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Notiz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NETPR" Type="Edm.Decimal" Nullable="false" Precision="11" Scale="2" sap:unicode="false" sap:label="Nettopreis" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WAERS" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Währung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="PRICE_STRING" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Preis" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="items" Relationship="TVC.VC_UI5_V2_SRV.BasketToBasketItems" FromRole="FromRole_BasketToBasketItems" ToRole="ToRole_BasketToBasketItems"/>
+                <NavigationProperty Name="messages" Relationship="TVC.VC_UI5_V2_SRV.BasketToMessage" FromRole="FromRole_BasketToMessage" ToRole="ToRole_BasketToMessage"/>
+            </EntityType>
+            <EntityType Name="basketItems" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="BASKET_GUID"/>
+                    <PropertyRef Name="POS_GUID"/>
+                </Key>
+                <Property Name="BASKET_GUID" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Globally Unique Identifier" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="POS_GUID" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="Globally Unique Identifier" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="POS" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Warenkorbposition" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ALT_POS_FOR" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Alternativposition für" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="BASKET_ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Warenkorb ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="BASKET_VERSION" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Version" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CONFIG_ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Konfig-ID" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="CONFIG_VERSION" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Version" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="MATNR" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:updatable="false"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Beschreibung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="KWMENG" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:label="KumAuftMenge" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VRKME" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="VerkaufsME" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="VBELN" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Vertriebsbeleg" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="VBELP" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="VertrBelegpos" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AUART" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Verk.belegart" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="AUART_DESCR" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Verk.belegart" sap:creatable="false" sap:updatable="false"/>
+                <Property Name="NETPR" Type="Edm.Decimal" Nullable="false" Precision="11" Scale="2" sap:unicode="false" sap:label="Nettopreis" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="WAERS" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Währung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="PRICE_STRING" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Preisstring" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NOTICE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Notiz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="IMG_URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Produktbild" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="KZKFG" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Konfigurierbares Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="INSTANCE" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="message" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GUID"/>
+                    <PropertyRef Name="INSTANCE"/>
+                    <PropertyRef Name="MSGGROUP"/>
+                </Key>
+                <Property Name="GUID" Type="Edm.Guid" Nullable="false" sap:unicode="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="INSTANCE" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSGGROUP" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Nachrichtengruppe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSGTYPE" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Nachrichtentyp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSGID" Type="Edm.String" Nullable="false" MaxLength="20" sap:unicode="false" sap:label="Nachrichten-ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSGNO" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Nachrichtennr" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSG" Type="Edm.String" Nullable="false" MaxLength="83" sap:unicode="false" sap:label="Zeile" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSGV1" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message-Var." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSGV2" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message-Var." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSGV3" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message-Var." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MSGV4" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Message-Var." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TITLE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SUBTITLE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="COUNTER" Type="Edm.Int16" Nullable="false" sap:unicode="false" sap:label="Laufende Nummer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATNAM" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Merkmal" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="characteristicCategory" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="AttrCatId"/>
+                </Key>
+                <Property Name="AttrCatId" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Merkmalkategorie" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="AttrCatDescr" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="characteristicGroups" Relationship="TVC.VC_UI5_V2_SRV.CharacteristicCategoryToGroup" FromRole="FromRole_CharacteristicCategoryToGroup" ToRole="ToRole_CharacteristicCategoryToGroup"/>
+            </EntityType>
+            <EntityType Name="productFindings" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Matnr"/>
+                </Key>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Descr" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mattype" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Articleno" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Info" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Price" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Shipping_time" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Image_url" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="characteristics" Relationship="TVC.VC_UI5_V2_SRV.ProductFindingToCharacteristicResult" FromRole="FromRole_ProductFindingToCharacteristicResult" ToRole="ToRole_ProductFindingToCharacteristicResult"/>
+            </EntityType>
+            <EntityType Name="grouping" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GROUPING_ID"/>
+                </Key>
+                <Property Name="GROUPING_ID" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Grupierung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCRIPTION" Type="Edm.String" Nullable="false" MaxLength="255" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SHOW_DESCRIPTION" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Bezeichnung anzeigen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LAYOUT" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Ausrichtung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LFDNR" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Laufende Nummer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="groupings" Relationship="TVC.VC_UI5_V2_SRV.GroupingToGroupings" FromRole="FromRole_GroupingToGroupings" ToRole="ToRole_GroupingToGroupings"/>
+                <NavigationProperty Name="characteristics" Relationship="TVC.VC_UI5_V2_SRV.GroupingToCharacteristics" FromRole="FromRole_GroupingToCharacteristics" ToRole="ToRole_GroupingToCharacteristics"/>
+            </EntityType>
+            <EntityType Name="characteristicResult" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="CSTIC"/>
+                </Key>
+                <Property Name="CSTIC" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALUE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UISECTION" Type="Edm.String" Nullable="false" MaxLength="12" sap:unicode="false" sap:label="Bereich" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SORT" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Laufende Nummer" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="Product" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pfid"/>
+                    <PropertyRef Name="TileId"/>
+                </Key>
+                <Property Name="Pfid" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Produktfindung ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="TileId" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Kachel ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubPfid" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="ProdFind. Subitem ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="SubKid" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Konfig Subitem ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ImgUrl" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="IMG_URL" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Texts" Relationship="TVC.VC_UI5_V2_SRV.ProductToTexts" FromRole="FromRole_ProductToTexts" ToRole="ToRole_ProductToTexts" sap:label="Texte"/>
+            </EntityType>
+            <EntityType Name="Text" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Id"/>
+                </Key>
+                <Property Name="Id" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Text ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Texttyp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="DESCRIPTION" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="salesOrderHeader" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vbeln"/>
+                </Key>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Verkaufsbeleg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="KunnrName" Type="Edm.String" Nullable="false" MaxLength="35" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue11" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 11" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue01" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 01" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue12" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 12" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue02" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 02" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vkgrp" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Verkäufergruppe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kunnr" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Auftraggeber" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue03" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 03" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue13" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 13" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vkbur" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Verkaufsbüro" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue04" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 04" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue14" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 14" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue15" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 15" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vkorg" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Verkaufsorg." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue05" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 05" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vtweg" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Vertriebsweg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue06" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 06" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue16" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Spart" Type="Edm.String" Nullable="false" MaxLength="2" sap:unicode="false" sap:label="Sparte" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue07" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 07" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue17" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 17" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue08" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 08" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue18" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 18" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue09" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 09" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue19" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 19" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue20" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 20" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue10" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue21" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 21" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue22" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 22" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue23" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 23" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue24" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 24" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue25" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 25" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue26" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 26" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue27" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 27" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue28" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 28" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue29" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 29" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue30" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 30" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="SalesOrderHeaderToSalesOrderItems" Relationship="TVC.VC_UI5_V2_SRV.SalesOrderHeaderToSalesOrderItems" FromRole="FromRole_SalesOrderHeaderToSalesOrderItems" ToRole="ToRole_SalesOrderHeaderToSalesOrderItems"/>
+            </EntityType>
+            <EntityType Name="salesOrderItems" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Vbeln"/>
+                    <PropertyRef Name="Posnr"/>
+                </Key>
+                <Property Name="Vbeln" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Verkaufsbeleg" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue01" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 01" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Cuobj" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="int. Objektnr." sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Posnr" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Position" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue02" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 02" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Matnr" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue03" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 03" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Kwmeng" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:unit="Vrkme" sap:label="KumAuftMenge" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue04" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 04" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Vrkme" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="VerkaufsME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ExtValue05" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 05" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue06" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 06" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue07" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 07" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue08" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 08" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue09" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 09" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ExtValue10" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Kundenfeld 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="config" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="INSTANCE"/>
+                </Key>
+                <Property Name="INSTANCE" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STATUS" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Konfigurationsstatus" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Config-ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VERSION" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="Version" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="POPUP" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Show Popup" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PRICE_GUID" Type="Edm.String" Nullable="false" MaxLength="22" sap:unicode="false" sap:label="Price GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UPD_CUST" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Update Customizing" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CONFIG_UUID" Type="Edm.String" Nullable="false" MaxLength="26" sap:unicode="false" sap:label="Konfig-UUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="configValueChange" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="INSTANCE"/>
+                </Key>
+                <Property Name="INSTANCE" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STATUS" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Konfigurationsstatus" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="PRICE_GUID" Type="Edm.String" Nullable="false" MaxLength="22" sap:unicode="false" sap:label="GUID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="POPUP" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Popup nach Autosave" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="customizing" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="TYPE"/>
+                    <PropertyRef Name="NAME"/>
+                </Key>
+                <Property Name="TYPE" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAME" Type="Edm.String" Nullable="false" MaxLength="50" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALUE" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Wert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="requiredCharacteristics" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="GRUPPE"/>
+                    <PropertyRef Name="ATNAM"/>
+                </Key>
+                <Property Name="GRUPPE" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Merkmalgruppe" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATNAM" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Merkmal" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATBEZ" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="InstanceInfo" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="INSTANCE"/>
+                </Key>
+                <Property Name="INSTANCE" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NAME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Name" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALUE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Wert" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="messages" Relationship="TVC.VC_UI5_V2_SRV.InstanceInfoToMessage" FromRole="FromRole_InstanceInfoToMessage" ToRole="ToRole_InstanceInfoToMessage"/>
+            </EntityType>
+            <EntityType Name="configSuggestValues" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="VMATN"/>
+                    <PropertyRef Name="ATWRT"/>
+                </Key>
+                <Property Name="VMATN" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Variante" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATWRT" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Merkmal" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALUE_DISP" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Wert unter Berücksichtigung Customizing" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="configSuggestColumns" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="VMATN"/>
+                    <PropertyRef Name="ATNAM"/>
+                </Key>
+                <Property Name="VMATN" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Variante" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ATNAM" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Merkmal" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VALUE_DISP" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Wert unter Berücksichtigung Customizing" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="downloadFilesItems" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Characterfeld der Länge 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DESCR" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Beschreibung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MIMETYPE" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Mimetyp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="FILE_NAME" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Dateiname" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="EXTENTION" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Dateierweiterung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="STRING" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Base64 String" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="XSTRING" Type="Edm.Binary" Nullable="false" sap:unicode="false" sap:label="xstring" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="LINK" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Link" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DWL_OPTION" Type="Edm.String" Nullable="false" MaxLength="1" sap:unicode="false" sap:label="Download Option" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="salesBomItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="POSNR"/>
+                </Key>
+                <Property Name="POSNR" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Position" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="UEPOS" Type="Edm.String" Nullable="false" MaxLength="6" sap:unicode="false" sap:label="Übergeord. Pos" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MATNR" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="KWMENG" Type="Edm.Decimal" Nullable="false" Precision="15" Scale="3" sap:unicode="false" sap:unit="VRKME" sap:label="KumAuftMenge" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VRKME" Type="Edm.String" Nullable="false" MaxLength="3" sap:unicode="false" sap:label="VerkaufsME" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="unit-of-measure"/>
+                <Property Name="ARKTX" Type="Edm.String" Nullable="false" MaxLength="40" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="NETPR" Type="Edm.String" Nullable="false" MaxLength="21" sap:unicode="false" sap:label="netwert_bi" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="CURR" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Währung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false" sap:semantics="currency-code"/>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="10" sap:unicode="false" sap:label="Characterfeld der Länge 10" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="INST_SELF" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="INST_PARENT" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="subitems" Relationship="TVC.VC_UI5_V2_SRV.SalesBomItemToSalesBomSubItem" FromRole="FromRole_SalesBomItemToSalesBomSubItem" ToRole="ToRole_SalesBomItemToSalesBomSubItem"/>
+            </EntityType>
+            <EntityType Name="productItem" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="ID"/>
+                </Key>
+                <Property Name="ID" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Produkt ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="MATNR" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Material" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="VARIANTE" Type="Edm.String" Nullable="false" MaxLength="18" sap:unicode="false" sap:label="Variante" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="URL" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Bild Url" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="items" Relationship="TVC.VC_UI5_V2_SRV.ProductItemToProductItem" FromRole="FromRole_ProductItemToProductItem" ToRole="ToRole_ProductItemToProductItem"/>
+            </EntityType>
+            <EntityType Name="appNavigation" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="NavigationId"/>
+                </Key>
+                <Property Name="NavigationId" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Navigation ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ViewId" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="UI5 View ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <NavigationProperty Name="Positions" Relationship="TVC.VC_UI5_V2_SRV.AppNavigationToAppNavigationPositions" FromRole="FromRole_AppNavigationToAppNavigationPositions" ToRole="ToRole_AppNavigationToAppNavigationPositions"/>
+            </EntityType>
+            <EntityType Name="appNavigationPosition" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Pos"/>
+                </Key>
+                <Property Name="Pos" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Position" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Instance" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Spos" Type="Edm.String" Nullable="false" MaxLength="4" sap:unicode="false" sap:label="Position" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Type" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Navigationstyp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Pfid" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="Produktfindung ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="Bezeichnung" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="DescriptionType" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Bezeichnungstyp" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="ViewId" Type="Edm.String" Nullable="false" MaxLength="100" sap:unicode="false" sap:label="UI5 View ID" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Visible" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Sichtbar" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Active" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Aktiv" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Selected" Type="Edm.Boolean" Nullable="false" sap:unicode="false" sap:label="Ausgewählt" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="CustomData" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Json"/>
+                </Key>
+                <Property Name="Json" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="JSON string" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="ValueHelp" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Fields"/>
+                    <PropertyRef Name="Keys"/>
+                </Key>
+                <Property Name="Fields" Type="Edm.String" Nullable="false" MaxLength="16" sap:unicode="false" sap:label="Feld der Länge 16" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Keys" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Characterfeld der Länge 32" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Value" Type="Edm.String" Nullable="false" MaxLength="32" sap:unicode="false" sap:label="Characterfeld der Länge 32" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Description" Type="Edm.String" Nullable="false" MaxLength="128" sap:unicode="false" sap:label="128 Zeichen" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <EntityType Name="instanceReport" sap:content-version="1">
+                <Key>
+                    <PropertyRef Name="Instance"/>
+                </Key>
+                <Property Name="Instance" Type="Edm.String" Nullable="false" MaxLength="8" sap:unicode="false" sap:label="Instanz" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Mimetype" Type="Edm.String" Nullable="false" MaxLength="30" sap:unicode="false" sap:label="MIME-Type" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Fileextension" Type="Edm.String" Nullable="false" MaxLength="5" sap:unicode="false" sap:label="Fileextension" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+                <Property Name="Report" Type="Edm.String" Nullable="false" sap:unicode="false" sap:label="Base64 Encoding" sap:creatable="false" sap:updatable="false" sap:sortable="false" sap:filterable="false"/>
+            </EntityType>
+            <Association Name="SalesBomItemToSalesBomSubItem" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.salesBomItem" Multiplicity="1" Role="FromRole_SalesBomItemToSalesBomSubItem"/>
+                <End Type="TVC.VC_UI5_V2_SRV.salesBomItem" Multiplicity="*" Role="ToRole_SalesBomItemToSalesBomSubItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_SalesBomItemToSalesBomSubItem">
+                        <PropertyRef Name="POSNR"/>
+                    </Principal>
+                    <Dependent Role="ToRole_SalesBomItemToSalesBomSubItem">
+                        <PropertyRef Name="UEPOS"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="GroupingToGroupings" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.grouping" Multiplicity="1" Role="FromRole_GroupingToGroupings"/>
+                <End Type="TVC.VC_UI5_V2_SRV.grouping" Multiplicity="*" Role="ToRole_GroupingToGroupings"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_GroupingToGroupings">
+                        <PropertyRef Name="GROUPING_ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_GroupingToGroupings">
+                        <PropertyRef Name="GROUPING_ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="GroupingToCharacteristics" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.grouping" Multiplicity="1" Role="FromRole_GroupingToCharacteristics"/>
+                <End Type="TVC.VC_UI5_V2_SRV.characteristics" Multiplicity="*" Role="ToRole_GroupingToCharacteristics"/>
+            </Association>
+            <Association Name="DownloadFilesToDownloadFilesItems" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.downloadFiles" Multiplicity="1" Role="FromRole_DownloadFilesToDownloadFilesItems"/>
+                <End Type="TVC.VC_UI5_V2_SRV.downloadFilesItems" Multiplicity="*" Role="ToRole_DownloadFilesToDownloadFilesItems"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_DownloadFilesToDownloadFilesItems">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_DownloadFilesToDownloadFilesItems">
+                        <PropertyRef Name="ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="InstanceInfoToMessage" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.InstanceInfo" Multiplicity="1" Role="FromRole_InstanceInfoToMessage"/>
+                <End Type="TVC.VC_UI5_V2_SRV.message" Multiplicity="*" Role="ToRole_InstanceInfoToMessage"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_InstanceInfoToMessage">
+                        <PropertyRef Name="INSTANCE"/>
+                    </Principal>
+                    <Dependent Role="ToRole_InstanceInfoToMessage">
+                        <PropertyRef Name="INSTANCE"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BasketToBasketItems" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.basket" Multiplicity="1" Role="FromRole_BasketToBasketItems"/>
+                <End Type="TVC.VC_UI5_V2_SRV.basketItems" Multiplicity="*" Role="ToRole_BasketToBasketItems"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BasketToBasketItems">
+                        <PropertyRef Name="GUID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BasketToBasketItems">
+                        <PropertyRef Name="BASKET_GUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="BasketToMessage" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.basket" Multiplicity="1" Role="FromRole_BasketToMessage"/>
+                <End Type="TVC.VC_UI5_V2_SRV.message" Multiplicity="*" Role="ToRole_BasketToMessage"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_BasketToMessage">
+                        <PropertyRef Name="GUID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_BasketToMessage">
+                        <PropertyRef Name="GUID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ProductGroupsToProducts" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.productGroups" Multiplicity="1" Role="FromRole_ProductGroupsToProducts"/>
+                <End Type="TVC.VC_UI5_V2_SRV.products" Multiplicity="*" Role="ToRole_ProductGroupsToProducts"/>
+            </Association>
+            <Association Name="ProductFindingToCharacteristicResult" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.productFindings" Multiplicity="1" Role="FromRole_ProductFindingToCharacteristicResult"/>
+                <End Type="TVC.VC_UI5_V2_SRV.characteristicResult" Multiplicity="*" Role="ToRole_ProductFindingToCharacteristicResult"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ProductFindingToCharacteristicResult">
+                        <PropertyRef Name="Matnr"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ProductFindingToCharacteristicResult">
+                        <PropertyRef Name="CSTIC"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ProductItemToProductItem" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.productItem" Multiplicity="1" Role="FromRole_ProductItemToProductItem"/>
+                <End Type="TVC.VC_UI5_V2_SRV.productItem" Multiplicity="*" Role="ToRole_ProductItemToProductItem"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ProductItemToProductItem">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ProductItemToProductItem">
+                        <PropertyRef Name="ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ProductToTexts" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.Product" Multiplicity="1" Role="FromRole_ProductToTexts"/>
+                <End Type="TVC.VC_UI5_V2_SRV.Text" Multiplicity="*" Role="ToRole_ProductToTexts"/>
+            </Association>
+            <Association Name="CharacteristicCategoryToGroup" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.characteristicCategory" Multiplicity="1" Role="FromRole_CharacteristicCategoryToGroup"/>
+                <End Type="TVC.VC_UI5_V2_SRV.characteristicGroup" Multiplicity="*" Role="ToRole_CharacteristicCategoryToGroup"/>
+            </Association>
+            <Association Name="CharacteristicGroupToCharacteristics" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.characteristicGroup" Multiplicity="1" Role="FromRole_CharacteristicGroupToCharacteristics"/>
+                <End Type="TVC.VC_UI5_V2_SRV.characteristics" Multiplicity="*" Role="ToRole_CharacteristicGroupToCharacteristics"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CharacteristicGroupToCharacteristics">
+                        <PropertyRef Name="GRUPPE"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CharacteristicGroupToCharacteristics">
+                        <PropertyRef Name="GRUPPE"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CharacteristicGroupToGroupings" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.characteristicGroup" Multiplicity="1" Role="FromRole_CharacteristicGroupToGroupings"/>
+                <End Type="TVC.VC_UI5_V2_SRV.grouping" Multiplicity="*" Role="ToRole_CharacteristicGroupToGroupings"/>
+            </Association>
+            <Association Name="AppNavigationToAppNavigationPositions" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.appNavigation" Multiplicity="1" Role="FromRole_AppNavigationToAppNavigationPositions"/>
+                <End Type="TVC.VC_UI5_V2_SRV.appNavigationPosition" Multiplicity="*" Role="ToRole_AppNavigationToAppNavigationPositions"/>
+            </Association>
+            <Association Name="SalesOrderHeaderToSalesOrderItems" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.salesOrderHeader" Multiplicity="1" Role="FromRole_SalesOrderHeaderToSalesOrderItems"/>
+                <End Type="TVC.VC_UI5_V2_SRV.salesOrderItems" Multiplicity="*" Role="ToRole_SalesOrderHeaderToSalesOrderItems"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_SalesOrderHeaderToSalesOrderItems">
+                        <PropertyRef Name="Vbeln"/>
+                    </Principal>
+                    <Dependent Role="ToRole_SalesOrderHeaderToSalesOrderItems">
+                        <PropertyRef Name="Vbeln"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ProductCategoriesToProductGroups" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.productCategories" Multiplicity="1" Role="FromRole_ProductCategoriesToProductGroups"/>
+                <End Type="TVC.VC_UI5_V2_SRV.productGroups" Multiplicity="*" Role="ToRole_ProductCategoriesToProductGroups"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ProductCategoriesToProductGroups">
+                        <PropertyRef Name="ID"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ProductCategoriesToProductGroups">
+                        <PropertyRef Name="ID"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="CharacteristicsToCharacteristicValues" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.characteristics" Multiplicity="0..1" Role="FromRole_CharacteristicsToCharacteristicValues"/>
+                <End Type="TVC.VC_UI5_V2_SRV.characteristicValues" Multiplicity="*" Role="ToRole_CharacteristicsToCharacteristicValues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_CharacteristicsToCharacteristicValues">
+                        <PropertyRef Name="GRUPPE"/>
+                        <PropertyRef Name="ATNAM"/>
+                    </Principal>
+                    <Dependent Role="ToRole_CharacteristicsToCharacteristicValues">
+                        <PropertyRef Name="GRUPPE"/>
+                        <PropertyRef Name="ATNAM"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ConfigSuggestionsToConfigSuggestColumns" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.configSuggestions" Multiplicity="1" Role="FromRole_ConfigSuggestionsToConfigSuggestColumns"/>
+                <End Type="TVC.VC_UI5_V2_SRV.configSuggestColumns" Multiplicity="*" Role="ToRole_ConfigSuggestionsToConfigSuggestColumns"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ConfigSuggestionsToConfigSuggestColumns">
+                        <PropertyRef Name="VMATN"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ConfigSuggestionsToConfigSuggestColumns">
+                        <PropertyRef Name="VMATN"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <Association Name="ConfigSuggestionsToConfigSuggestValues" sap:content-version="1">
+                <End Type="TVC.VC_UI5_V2_SRV.configSuggestions" Multiplicity="1" Role="FromRole_ConfigSuggestionsToConfigSuggestValues"/>
+                <End Type="TVC.VC_UI5_V2_SRV.configSuggestValues" Multiplicity="*" Role="ToRole_ConfigSuggestionsToConfigSuggestValues"/>
+                <ReferentialConstraint>
+                    <Principal Role="FromRole_ConfigSuggestionsToConfigSuggestValues">
+                        <PropertyRef Name="VMATN"/>
+                    </Principal>
+                    <Dependent Role="ToRole_ConfigSuggestionsToConfigSuggestValues">
+                        <PropertyRef Name="VMATN"/>
+                    </Dependent>
+                </ReferentialConstraint>
+            </Association>
+            <EntityContainer Name="TVC_VC_UI5_V2_SRV_Entities" m:IsDefaultEntityContainer="true" sap:supported-formats="atom json xlsx">
+                <EntitySet Name="branchesSet" EntityType="TVC.VC_UI5_V2_SRV.branches" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="configMultilevelSet" EntityType="TVC.VC_UI5_V2_SRV.configMultilevel" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="configStatusSet" EntityType="TVC.VC_UI5_V2_SRV.configStatus" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="configSuggestionsSet" EntityType="TVC.VC_UI5_V2_SRV.configSuggestions" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="currentConfigSet" EntityType="TVC.VC_UI5_V2_SRV.currentConfig" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="downloadFilesSet" EntityType="TVC.VC_UI5_V2_SRV.downloadFiles" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="i18nSet" EntityType="TVC.VC_UI5_V2_SRV.i18n" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="languageSet" EntityType="TVC.VC_UI5_V2_SRV.language" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="materialGroupsSet" EntityType="TVC.VC_UI5_V2_SRV.materialGroups" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="parameterSet" EntityType="TVC.VC_UI5_V2_SRV.parameter" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="priceSet" EntityType="TVC.VC_UI5_V2_SRV.price" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="productCategoriesSet" EntityType="TVC.VC_UI5_V2_SRV.productCategories" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="productGroupsSet" EntityType="TVC.VC_UI5_V2_SRV.productGroups" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="productsSet" EntityType="TVC.VC_UI5_V2_SRV.products" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="characteristicGroupSet" EntityType="TVC.VC_UI5_V2_SRV.characteristicGroup" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="characteristicsSet" EntityType="TVC.VC_UI5_V2_SRV.characteristics" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="characteristicValuesSet" EntityType="TVC.VC_UI5_V2_SRV.characteristicValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="basketSet" EntityType="TVC.VC_UI5_V2_SRV.basket" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="basketItemsSet" EntityType="TVC.VC_UI5_V2_SRV.basketItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="messageSet" EntityType="TVC.VC_UI5_V2_SRV.message" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="characteristicCategorySet" EntityType="TVC.VC_UI5_V2_SRV.characteristicCategory" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="productFindingsSet" EntityType="TVC.VC_UI5_V2_SRV.productFindings" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="groupingSet" EntityType="TVC.VC_UI5_V2_SRV.grouping" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="characteristicResultSet" EntityType="TVC.VC_UI5_V2_SRV.characteristicResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <EntitySet Name="ProductSet" EntityType="TVC.VC_UI5_V2_SRV.Product" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="TextSet" EntityType="TVC.VC_UI5_V2_SRV.Text" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="salesOrderHeaderSet" EntityType="TVC.VC_UI5_V2_SRV.salesOrderHeader" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="salesOrderItemsSet" EntityType="TVC.VC_UI5_V2_SRV.salesOrderItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="configSet" EntityType="TVC.VC_UI5_V2_SRV.config" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="configValueChangeSet" EntityType="TVC.VC_UI5_V2_SRV.configValueChange" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="customizingSet" EntityType="TVC.VC_UI5_V2_SRV.customizing" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="requiredCharacteristicsSet" EntityType="TVC.VC_UI5_V2_SRV.requiredCharacteristics" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="InstanceInfoSet" EntityType="TVC.VC_UI5_V2_SRV.InstanceInfo" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="configSuggestValuesSet" EntityType="TVC.VC_UI5_V2_SRV.configSuggestValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="configSuggestColumnsSet" EntityType="TVC.VC_UI5_V2_SRV.configSuggestColumns" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="downloadFilesItemsSet" EntityType="TVC.VC_UI5_V2_SRV.downloadFilesItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="salesBomItemSet" EntityType="TVC.VC_UI5_V2_SRV.salesBomItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="productItemSet" EntityType="TVC.VC_UI5_V2_SRV.productItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="appNavigationSet" EntityType="TVC.VC_UI5_V2_SRV.appNavigation" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="appNavigationPositionSet" EntityType="TVC.VC_UI5_V2_SRV.appNavigationPosition" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="CustomDataSet" EntityType="TVC.VC_UI5_V2_SRV.CustomData" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="ValueHelpSet" EntityType="TVC.VC_UI5_V2_SRV.ValueHelp" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:content-version="1"/>
+                <EntitySet Name="instanceReportSet" EntityType="TVC.VC_UI5_V2_SRV.instanceReport" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:pageable="false" sap:addressable="false" sap:content-version="1"/>
+                <AssociationSet Name="CharacteristicGroupToCharacteristicsSet" Association="TVC.VC_UI5_V2_SRV.CharacteristicGroupToCharacteristics" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="characteristicGroupSet" Role="FromRole_CharacteristicGroupToCharacteristics"/>
+                    <End EntitySet="characteristicsSet" Role="ToRole_CharacteristicGroupToCharacteristics"/>
+                </AssociationSet>
+                <AssociationSet Name="ProductFindingToCharacteristicResultSet" Association="TVC.VC_UI5_V2_SRV.ProductFindingToCharacteristicResult" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="productFindingsSet" Role="FromRole_ProductFindingToCharacteristicResult"/>
+                    <End EntitySet="characteristicResultSet" Role="ToRole_ProductFindingToCharacteristicResult"/>
+                </AssociationSet>
+                <AssociationSet Name="CharacteristicsToCharacteristicValuesSet" Association="TVC.VC_UI5_V2_SRV.CharacteristicsToCharacteristicValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="characteristicsSet" Role="FromRole_CharacteristicsToCharacteristicValues"/>
+                    <End EntitySet="characteristicValuesSet" Role="ToRole_CharacteristicsToCharacteristicValues"/>
+                </AssociationSet>
+                <AssociationSet Name="BasketToBasketItemsSet" Association="TVC.VC_UI5_V2_SRV.BasketToBasketItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="basketSet" Role="FromRole_BasketToBasketItems"/>
+                    <End EntitySet="basketItemsSet" Role="ToRole_BasketToBasketItems"/>
+                </AssociationSet>
+                <AssociationSet Name="InstanceInfoToMessageSet" Association="TVC.VC_UI5_V2_SRV.InstanceInfoToMessage" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="InstanceInfoSet" Role="FromRole_InstanceInfoToMessage"/>
+                    <End EntitySet="messageSet" Role="ToRole_InstanceInfoToMessage"/>
+                </AssociationSet>
+                <AssociationSet Name="CharacteristicGroupToGroupingsSet" Association="TVC.VC_UI5_V2_SRV.CharacteristicGroupToGroupings" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="characteristicGroupSet" Role="FromRole_CharacteristicGroupToGroupings"/>
+                    <End EntitySet="groupingSet" Role="ToRole_CharacteristicGroupToGroupings"/>
+                </AssociationSet>
+                <AssociationSet Name="DownloadFilesToDownloadFilesItemsSet" Association="TVC.VC_UI5_V2_SRV.DownloadFilesToDownloadFilesItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="downloadFilesSet" Role="FromRole_DownloadFilesToDownloadFilesItems"/>
+                    <End EntitySet="downloadFilesItemsSet" Role="ToRole_DownloadFilesToDownloadFilesItems"/>
+                </AssociationSet>
+                <AssociationSet Name="SalesBomItemToSalesBomSubItemSet" Association="TVC.VC_UI5_V2_SRV.SalesBomItemToSalesBomSubItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="salesBomItemSet" Role="FromRole_SalesBomItemToSalesBomSubItem"/>
+                    <End EntitySet="salesBomItemSet" Role="ToRole_SalesBomItemToSalesBomSubItem"/>
+                </AssociationSet>
+                <AssociationSet Name="CharacteristicCategoryToGroup_AssocSet" Association="TVC.VC_UI5_V2_SRV.CharacteristicCategoryToGroup" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="characteristicCategorySet" Role="FromRole_CharacteristicCategoryToGroup"/>
+                    <End EntitySet="characteristicGroupSet" Role="ToRole_CharacteristicCategoryToGroup"/>
+                </AssociationSet>
+                <AssociationSet Name="ConfigSuggestionsToConfigSuggestColumSet" Association="TVC.VC_UI5_V2_SRV.ConfigSuggestionsToConfigSuggestColumns" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="configSuggestionsSet" Role="FromRole_ConfigSuggestionsToConfigSuggestColumns"/>
+                    <End EntitySet="configSuggestColumnsSet" Role="ToRole_ConfigSuggestionsToConfigSuggestColumns"/>
+                </AssociationSet>
+                <AssociationSet Name="ProductGroupsToProductsSet" Association="TVC.VC_UI5_V2_SRV.ProductGroupsToProducts" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="productGroupsSet" Role="FromRole_ProductGroupsToProducts"/>
+                    <End EntitySet="productsSet" Role="ToRole_ProductGroupsToProducts"/>
+                </AssociationSet>
+                <AssociationSet Name="ProductToTextsSet" Association="TVC.VC_UI5_V2_SRV.ProductToTexts" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="ProductSet" Role="FromRole_ProductToTexts"/>
+                    <End EntitySet="TextSet" Role="ToRole_ProductToTexts"/>
+                </AssociationSet>
+                <AssociationSet Name="ProductCategoriesToProductGroupsSet" Association="TVC.VC_UI5_V2_SRV.ProductCategoriesToProductGroups" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="productCategoriesSet" Role="FromRole_ProductCategoriesToProductGroups"/>
+                    <End EntitySet="productGroupsSet" Role="ToRole_ProductCategoriesToProductGroups"/>
+                </AssociationSet>
+                <AssociationSet Name="BasketToMessageSet" Association="TVC.VC_UI5_V2_SRV.BasketToMessage" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="basketSet" Role="FromRole_BasketToMessage"/>
+                    <End EntitySet="messageSet" Role="ToRole_BasketToMessage"/>
+                </AssociationSet>
+                <AssociationSet Name="GroupingToCharacteristicsSet" Association="TVC.VC_UI5_V2_SRV.GroupingToCharacteristics" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="groupingSet" Role="FromRole_GroupingToCharacteristics"/>
+                    <End EntitySet="characteristicsSet" Role="ToRole_GroupingToCharacteristics"/>
+                </AssociationSet>
+                <AssociationSet Name="GroupingToGroupingsSet" Association="TVC.VC_UI5_V2_SRV.GroupingToGroupings" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="groupingSet" Role="FromRole_GroupingToGroupings"/>
+                    <End EntitySet="groupingSet" Role="ToRole_GroupingToGroupings"/>
+                </AssociationSet>
+                <AssociationSet Name="ProductItemToProductItemSet" Association="TVC.VC_UI5_V2_SRV.ProductItemToProductItem" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="productItemSet" Role="FromRole_ProductItemToProductItem"/>
+                    <End EntitySet="productItemSet" Role="ToRole_ProductItemToProductItem"/>
+                </AssociationSet>
+                <AssociationSet Name="SalesOrderHeaderToSalesOrderItemsSet" Association="TVC.VC_UI5_V2_SRV.SalesOrderHeaderToSalesOrderItems" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="salesOrderHeaderSet" Role="FromRole_SalesOrderHeaderToSalesOrderItems"/>
+                    <End EntitySet="salesOrderItemsSet" Role="ToRole_SalesOrderHeaderToSalesOrderItems"/>
+                </AssociationSet>
+                <AssociationSet Name="ConfigSuggestionsToConfigSuggestValueSet" Association="TVC.VC_UI5_V2_SRV.ConfigSuggestionsToConfigSuggestValues" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="configSuggestionsSet" Role="FromRole_ConfigSuggestionsToConfigSuggestValues"/>
+                    <End EntitySet="configSuggestValuesSet" Role="ToRole_ConfigSuggestionsToConfigSuggestValues"/>
+                </AssociationSet>
+                <AssociationSet Name="AppNavigationToAppNavigationPositionsSet" Association="TVC.VC_UI5_V2_SRV.AppNavigationToAppNavigationPositions" sap:creatable="false" sap:updatable="false" sap:deletable="false" sap:content-version="1">
+                    <End EntitySet="appNavigationSet" Role="FromRole_AppNavigationToAppNavigationPositions"/>
+                    <End EntitySet="appNavigationPositionSet" Role="ToRole_AppNavigationToAppNavigationPositions"/>
+                </AssociationSet>
+                <FunctionImport Name="copySalesOrderItem" ReturnType="TVC.VC_UI5_V2_SRV.salesOrderItems" EntitySet="salesOrderItemsSet" m:HttpMethod="POST" sap:label="Vertriebsbelegposition kopieren" sap:action-for="TVC.VC_UI5_V2_SRV.salesOrderItems">
+                    <Parameter Name="vbeln" Type="Edm.String" Mode="In"/>
+                    <Parameter Name="posnr" Type="Edm.String" Mode="In"/>
+                </FunctionImport>
+                <FunctionImport Name="reportInstanceConfiguration" ReturnType="TVC.VC_UI5_V2_SRV.instanceReport" EntitySet="instanceReportSet" m:HttpMethod="GET" sap:label="Dokument zu einer Konfiguration der aktiven Instanz erzeugen" sap:action-for="TVC.VC_UI5_V2_SRV.instanceReport">
+                    <Parameter Name="instance_product" Type="Edm.String" Mode="In" MaxLength="8"/>
+                    <Parameter Name="instance_sizing" Type="Edm.String" Mode="In" MaxLength="8"/>
+                </FunctionImport>
+            </EntityContainer>
+            <atom:link rel="self" href="http://vsaptest.leser.com:8000/sap/opu/odata/tvc/VC_UI5_V2_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+            <atom:link rel="latest-version" href="http://vsaptest.leser.com:8000/sap/opu/odata/tvc/VC_UI5_V2_SRV/$metadata" xmlns:atom="http://www.w3.org/2005/Atom"/>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>

@@ -1,0 +1,265 @@
+<mvc:View
+    xmlns="sap.m"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:grid="sap.ui.layout.cssgrid"
+    xmlns:form="sap.ui.layout.form"
+    xmlns:f="sap.f"
+    xmlns:l="sap.ui.layout"
+    xmlns:core="sap.ui.core"
+    controllerName="com.leser.valvestar.controller.SelectionPage"
+>
+    <Page
+        id="selectionPage"
+        showHeader="false"
+        enableScrolling="false"
+    >
+        <content>
+            <l:ResponsiveSplitter
+                id="rsSelPage"
+                defaultPane="default"
+                class="splitterBarColor contentNotScrollable"
+            >
+                <l:PaneContainer id="pnContSelPage">
+                    <l:SplitPane>
+                        <Panel
+                            id="pnTiles"
+                            height="100%"
+                            class="splitLayoutPanelStyle vcBackgroundPage sapUiSmallMarginBottom vcPanel"
+                        >
+                            <layoutData>
+                                <l:SplitterLayoutData size="80%" />
+                            </layoutData>
+                            <headerToolbar>
+                                <OverflowToolbar>
+                                    <Title
+                                        level="H1"
+                                        class="vcFontSegheader"
+                                        text="{applicationData>/i18n/selPageHeader1} {= ${applicationData>/selectionProducts}.length} {applicationData>/i18n/selPageHeader2}"
+                                    />
+                                </OverflowToolbar>
+                            </headerToolbar>
+                            <grid:CSSGrid
+                                items="{applicationData>/selectionProducts}"
+                                gridTemplateColumns="repeat(auto-fit, 20rem)"
+                                class="gridList"
+                            >
+                                <VBox>
+                                    <VBox
+                                        id="vbProd"
+                                        class="sapUiSmallMargin contentSelect"
+                                    >
+                                        <layoutData>
+                                            <FlexItemData
+                                                growFactor="1"
+                                                shrinkFactor="0"
+                                            />
+                                            <!-- Don't shrink below minimum size. Fill space if
+                                            available. -->
+                                        </layoutData>
+                                        <Title
+                                            text="{applicationData>Descr}"
+                                            class="vcGridTitle"
+                                            wrapping="true"
+                                        />
+                                        <Text
+                                            id="idTextArtNo"
+                                            text="{applicationData>/i18n/articleNo} {applicationData>Articleno}"
+                                            class="vcPanelText"
+                                            wrapping="true"
+                                        />
+                                        <VBox
+                                            height="6rem"
+                                            alignContent="Center"
+                                            justifyContent="Center"
+                                            busy="{= ${applicationData>Image_url} ? false : true}"
+                                        >
+                                            <Image
+                                                id="imgProd"
+                                                class="imgSize"
+                                                src="{applicationData>Image_url}"
+                                            >
+                                                <layoutData>
+                                                    <FlexItemData
+                                                        styleClass="selectionProductImage"
+                                                    />
+                                                </layoutData>
+                                            </Image>
+                                        </VBox>
+                                        <VBox
+                                            items="{path: 'applicationData>characteristics/results', templateShareable: true}"
+                                            width="100%"
+                                        >
+                                            <VBox
+                                                width="100%"
+                                                visible="{path: 'applicationData>', formatter: '.formatter.getIsHeaderCstic'}"
+                                            >
+                                                <form:SimpleForm
+                                                    editable="false"
+                                                    layout="ResponsiveGridLayout"
+                                                    labelSpanXL="7"
+                                                    labelSpanL="7"
+                                                    labelSpanM="7"
+                                                    labelSpanS="7"
+                                                    adjustLabelSpan="true"
+                                                    emptySpanXL="0"
+                                                    emptySpanL="0"
+                                                    emptySpanM="0"
+                                                    emptySpanS="0"
+                                                    columnsXL="2"
+                                                    columnsL="2"
+                                                    columnsM="2"
+                                                    class="vcFormGrid"
+                                                >
+                                                    <form:content>
+                                                        <Label
+                                                            text="{applicationData>CSTIC}"
+                                                            class="vcGridLabel"
+                                                            textAlign="Begin"
+                                                        />
+                                                        <Text
+                                                            text="{applicationData>VALUE}"
+                                                            class="vcPanelText"
+                                                        />
+                                                    </form:content>
+                                                </form:SimpleForm>
+                                            </VBox>
+                                        </VBox>
+                                        <Link
+                                            text="{applicationData>/i18n/showTechnData}"
+                                            subtle="true"
+                                            press="handleToggleDetail"
+                                            enabled="{= ${applicationData>characteristics/results} ? true : false}"
+                                        />
+                                        <Toolbar
+                                            width="100%"
+                                            height="1px"
+                                        />
+                                        <VBox
+                                            id="vbAdditionalInformation"
+                                            class="wrapper noMarginLeftRight"
+                                        >
+                                            <VBox
+                                                visible="false"
+                                                items="{path: 'applicationData>characteristics/results', templateShareable: true}"
+                                                width="100%"
+                                            >
+                                                <VBox
+                                                    width="100%"
+                                                    visible="{path: 'applicationData>', formatter: '.formatter.getIsDetailCstic'}"
+                                                >
+                                                    <form:SimpleForm
+                                                        id="sfAdditionalInfo"
+                                                        editable="false"
+                                                        layout="ResponsiveGridLayout"
+                                                        labelSpanXL="7"
+                                                        labelSpanL="7"
+                                                        labelSpanM="7"
+                                                        labelSpanS="7"
+                                                        adjustLabelSpan="true"
+                                                        emptySpanXL="0"
+                                                        emptySpanL="0"
+                                                        emptySpanM="0"
+                                                        emptySpanS="0"
+                                                        columnsXL="2"
+                                                        columnsL="2"
+                                                        columnsM="2"
+                                                        class="vcFormGrid reduceSmartFormPadding"
+                                                    >
+                                                        <form:content>
+                                                            <Label
+                                                                text="{applicationData>CSTIC}"
+                                                                class="vcGridLabel"
+                                                                textAlign="Begin"
+                                                            />
+                                                            <Text
+                                                                text="{applicationData>VALUE}"
+                                                                class="vcPanelText"
+                                                            />
+                                                        </form:content>
+                                                    </form:SimpleForm>
+                                                </VBox>
+                                            </VBox>
+                                            <Toolbar
+                                                width="100%"
+                                                height="1px"
+                                            />
+                                        </VBox>
+                                        <!-- Deckungsbeitrag, Contribution Margin 
+											<VBox class="wrapper noMarginLeftRight">
+											<VBox items="{path: 'applicationData>characteristics/results', templateShareable: true}"
+                                        width="100%">
+												<VBox width="100%" visible="{path: 'applicationData>', formatter: '.formatter.getIsFooterCstic'}">
+													<form:SimpleForm editable="false" layout="ResponsiveGridLayout" labelSpanXL="7" labelSpanL="7"
+                                        labelSpanM="7" labelSpanS="7"
+														adjustLabelSpan="true" emptySpanXL="0" emptySpanL="0" emptySpanM="0" emptySpanS="0" columnsXL="2"
+                                        columnsL="2" columnsM="2"
+														class="vcFormGrid reduceSmartFormPadding">
+														<form:content>
+															<Label text="{applicationData>CSTIC}" class="vcGridLabel" textAlign="Begin"></Label>
+															<Text text="{applicationData>VALUE}" class="vcPanelText"/>
+														</form:content>
+													</form:SimpleForm>
+												</VBox>
+											</VBox>
+											<Toolbar width="100%" height="1px"/>
+										</VBox>-->
+                                        <Button
+                                            type="Emphasized"
+                                            class="sapUiTinyMarginTop vcButtonBlue alignSelfCenter"
+                                            width="90%"
+                                            text="{applicationData>/i18n/configureSAP}"
+                                            press="configureProduct"
+                                        />
+                                    </VBox>
+                                </VBox>
+                            </grid:CSSGrid>
+                        </Panel>
+                    </l:SplitPane>
+                    <l:SplitPane id="spSizingData">
+                        <Panel
+                            id="pnSizingData"
+                            height="100%"
+                            class="splitLayoutPanelStyle vcBackgroundPage sapUiSmallMarginBottom vcPanel"
+                        >
+                            <layoutData>
+                                <l:SplitterLayoutData />
+                            </layoutData>
+                            <headerToolbar>
+                                <Toolbar>
+                                    <Title
+                                        class="vcFontSegheader"
+                                        text="{applicationData>/i18n/sizingData}"
+                                        level="H2"
+                                    />
+                                </Toolbar>
+                            </headerToolbar>
+                            <VBox class="vcSmallPaddingBottom">
+                                <Table
+                                    id="tbSizingData"
+                                    items="{path: 'applicationData>/currentConfigurationForSelection', templateShareable: true}"
+                                >
+                                    <columns>
+                                        <Column width="40%" />
+                                        <Column width="20%" />
+                                    </columns>
+                                    <items>
+                                        <ColumnListItem>
+                                            <cells>
+                                                <FormattedText
+                                                    htmlText="{applicationData>key}"
+                                                />
+                                                <FormattedText
+                                                    htmlText="{applicationData>text}"
+                                                />
+                                            </cells>
+                                        </ColumnListItem>
+                                    </items>
+                                </Table>
+                            </VBox>
+                        </Panel>
+                    </l:SplitPane>
+                </l:PaneContainer>
+            </l:ResponsiveSplitter>
+        </content>
+    </Page>
+</mvc:View>

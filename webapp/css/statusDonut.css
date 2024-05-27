@@ -1,0 +1,140 @@
+*,
+*:before,
+*:after {
+    box-sizing: border-box;
+}
+
+.statusDonutBackgroundWhite {
+    background: #ffffff !important;
+}
+
+.statusDonutSize {
+    font-size: 1em;
+    min-width: 20rem;
+}
+
+.statusDonutTitle {
+    font-size: 22px !important;
+    font-weight: bold !important;
+    color: #325064 !important;
+}
+
+.statusDonutPieWrapper {
+    position: relative;
+    width: 5em;
+    height: 5em;
+    margin: 0px auto;
+}
+
+.statusDonutPieWrapper .statusDonutPie {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    clip: rect(0em, 5em, 5em, 2.5em);
+}
+
+.statusDonutPieWrapper .statusDonutHalfCircle {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    width: 100%;
+    height: 100%;
+    border: 0em solid #1abc9c;
+    border-radius: 50%;
+    clip: rect(0em, 2.5em, 5em, 0em);
+}
+
+.statusDonutPieWrapper .statusDonutHalfCircleWarning {
+    border-color: #d8c919 !important;
+}
+
+.statusDonutPieWrapper .statusDonutHalfCircleError {
+    border-color: #c50101 !important;
+}
+
+.statusDonutPieWrapper .statusDonutRightSide {
+    transform: rotate(0deg);
+}
+
+.statusDonutPieWrapper .statusDonutShadow {
+    width: 100%;
+    height: 100%;
+    border: 1em solid #bdc3c7;
+    border-radius: 50%;
+}
+
+.statusDonutSize .statusDonutInfo {
+    max-width: 13rem;
+}
+
+.statusDonutInfo .statusDonutInfoInner {
+    font-size: 0.8rem;
+}
+
+.statusDonutInfoTitle {
+    font-size: 15px !important;
+    font-weight: bold !important;
+    color: #325064;
+    margin: 0 0.8rem 0.5rem 0;
+}
+
+.statusDonutInfoTitle.statusDonutInfoTitleWarning {
+    color: #d8c919;
+}
+
+.statusDonutInfoTitle.statusDonutInfoTitleError {
+    color: #c50101;
+}
+
+.statusDonutPieWrapper .statusDonutLabel {
+    position: absolute;
+    top: 5em;
+    right: 5em;
+    bottom: 5em;
+    left: 5em;
+    display: block;
+    background: none;
+    border-radius: 50%;
+    font-size: 0.25em;
+    line-height: 9.6em;
+    text-align: center;
+    cursor: default;
+    z-index: 2;
+    background-color: white;
+    color: white;
+}
+
+.statusDonutPieWrapper .statusDonutLabelError {
+    background-color: #c50101;
+    color: white;
+}
+
+.statusDonutPieWrapper .statusDonutLabelWarning {
+    background-color: #d8c919;
+    color: white;
+}
+
+.statusDonutPieWrapper .statusDonutLabelSuccess {
+    background-color: white;
+    color: green;
+}
+
+.statusDonutPieWrapper .statusDonutLabel .statusDonutIcon {
+    font-family: 'SAP\2dicons';
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.statusDonutPieWrapper .statusDonutLabel .statusDonutIconError::after {
+    content: '\e094';
+}
+
+.statusDonutPieWrapper .statusDonutLabel .statusDonutIconWarning::after {
+    content: '\e05c';
+}
+
+.statusDonutPieWrapper .statusDonutLabel .statusDonutIconSuccess::after {
+    content: '\e05b';
+}

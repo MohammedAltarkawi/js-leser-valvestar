@@ -1,0 +1,9 @@
+<core:FragmentDefinition xmlns:core="sap.ui.core" xmlns:mvc="sap.ui.core.mvc" xmlns="sap.m">
+	<VBox class="sapUiTinyMarginBottom" height="1.5rem" alignItems="End">
+		<Text class="fontStandard" text="{applicationData>/i18n/mandFields}" visible="true"
+			/>
+		<layoutData>
+			<FlexItemData minHeight="1.5rem"/>
+		</layoutData>
+	</VBox>
+</core:FragmentDefinition>

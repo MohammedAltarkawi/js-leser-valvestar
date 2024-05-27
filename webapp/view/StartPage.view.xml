@@ -1,0 +1,272 @@
+<mvc:View
+    controllerName="com.leser.valvestar.controller.StartPage"
+    xmlns:mvc="sap.ui.core.mvc"
+    xmlns:core="sap.ui.core"
+    displayBlock="true"
+    xmlns="sap.m"
+>
+    <Page
+        id="parentPage"
+        showHeader="true"
+        enableScrolling="false"
+        class="vcBackgroundPage startPage outlineDeactivate"
+        busy="{applicationData>/busyStart}"
+    >
+        <customHeader>
+            <OverflowToolbar
+                id="pageHeader"
+                class="pageHeader"
+                height="5rem"
+            >
+                <Image
+                    class="logo"
+                    src="img/logo.png"
+                    height="50%"
+                />
+                <ToolbarSpacer />
+                <VBox
+                    class="sapUiSmallMarginTop headerVBox headerCharacteristic languageFlexBox"
+                    justifyContent="Start"
+                    alignContent="Center"
+                    alignItems="Baseline"
+                >
+                    <Label
+                        class="vcLabel fontStandard headerText"
+                        text=" "
+                    />
+                    <SearchField
+                        class="tvcLoadConfigInput"
+                        search="onLoadConfiguration"
+                        value="{= ${applicationData>/existingConfigID} ? ${applicationData>/existingConfigID} : ${applicationData>/existingConfigUUID} }"
+                        placeholder="{applicationData>/i18n/loadConfig}"
+                    />
+                </VBox>
+                <ToolbarSeparator />
+                <VBox
+                    class="sapUiSmallMarginTop headerVBox headerCharacteristic languageFlexBox"
+                    justifyContent="Start"
+                    alignContent="Center"
+                    alignItems="Baseline"
+                >
+                    <Label
+                        class="vcLabel fontStandard headerText"
+                        text="{applicationData>/i18n/language}"
+                    />
+                    <Select
+                        id="systemLanguage"
+                        class="languageSelect"
+                        forceSelection="true"
+                        selectedKey="{applicationData>/systemLanguage}"
+                        change="onLanguageChange"
+                        items="{ path: 'applicationData>/languageSet' }"
+                    >
+                        <core:Item
+                            text="{applicationData>DESCR}"
+                            key="{applicationData>LAISO}"
+                        />
+                    </Select>
+                </VBox>
+                <ToolbarSeparator />
+                <HBox
+                    id="functionArea1"
+                    class="functionArea"
+                    alignContent="Center"
+                >
+                    <VBox
+                        class="sapUiSmallMarginBegin"
+                        alignContent="Center"
+                        alignItems="Center"
+                        visible="{applicationData>/saveBtn/visible}"
+                    >
+                        <Button
+                            id="saveBtn"
+                            icon="sap-icon://save"
+                            enabled="{applicationData>/saveBtn/active}"
+                            press="onSavePress"
+                            class="vcButton sapUiNoMarginBottom headerText"
+                        />
+                        <Text
+                            text="{applicationData>/i18n/save}"
+                            class="headerText"
+                        />
+                    </VBox>
+                    <VBox
+                        class="sapUiSmallMarginBegin"
+                        alignContent="Center"
+                        alignItems="Center"
+                        visible="{applicationData>/saveBtn/visible}"
+                    >
+                        <Button
+                            id="printBtn"
+                            icon="sap-icon://print"
+                            press="onPrintPress"
+                            class="vcButton sapUiNoMarginBottom headerText"
+                        />
+                        <Text
+                            text="{applicationData>/i18n/print}"
+                            class="headerText"
+                        />
+                    </VBox>
+                    <VBox
+                        class="sapUiSmallMarginBegin"
+                        alignContent="Center"
+                        alignItems="Center"
+                    >
+                        <Button
+                            icon="sap-icon://reset"
+                            press="onResetPress"
+                            class="headerText"
+                        />
+                        <Text
+                            text="{applicationData>/i18n/reset}"
+                            class="headerText"
+                        />
+                    </VBox>
+                    <!-- <VBox class="sapUiSmallMarginBegin" alignContent="Center" alignItems="Center" visible="false">
+						<Button icon="sap-icon://action" press="onExportPress" class="vcButton sapUiNoMarginBottom headerText"/>
+						<Text text="{applicationData>/i18n/export}" class="headerText"/>
+					</VBox>
+					<VBox class="sapUiSmallMarginBegin" alignContent="Center" alignItems="Center" visible="false">
+						<Button icon="sap-icon://decline" press="onClosePress" class="vcButton sapUiNoMarginBottom headerText"/>
+						<Text text="{applicationData>/i18n/close}" class="headerText"/>
+					</VBox> -->
+                </HBox>
+            </OverflowToolbar>
+        </customHeader>
+        <HBox
+            id="toolbarBox"
+            height="4rem"
+            fitContainer="true"
+            alignContent="Stretch"
+            class="navigation"
+        >
+            <items>
+                <VBox
+                    height="4rem"
+                    width="100%"
+                >
+                    <ToggleButton
+                        id="idTogSizing"
+                        width="100%"
+                        class="vcTogBtn vcStartTogBtnBase customNavigateButton customNavigateButtonToSizing noopac"
+                        text="{applicationData>/i18n/sizing}"
+                        pressed="true"
+                        press="onTogSizingPress"
+                        enabled="{applicationData>/backNavEnabled}"
+                    />
+                    <Text
+                        id="idTogSizingText"
+                        class="vcToggleTextWhite"
+                        width="auto"
+                        textAlign="Begin"
+                        text="{applicationData>/i18n/enterSizingDataSheet}"
+                    >
+                        <layoutData>
+                            <FlexItemData styleClass="toSizingArea" />
+                        </layoutData>
+                    </Text>
+                    <layoutData>
+                        <FlexItemData
+                            minWidth="31.5%"
+                            styleClass="vcTogarea toSizingArea"
+                        />
+                    </layoutData>
+                </VBox>
+                <VBox
+                    id="left-triangle"
+                    class="triangle triangleblau firsttriangle"
+                    height="4rem"
+                >
+                    <layoutData>
+                        <FlexItemData
+                            minWidth="2%"
+                            styleClass="triangleArea"
+                        />
+                    </layoutData>
+                </VBox>
+                <VBox
+                    height="4rem"
+                    width="100%"
+                >
+                    <ToggleButton
+                        id="idTogSelection"
+                        width="100%"
+                        class=" vcTogBtn vcStartTogBtnBase customNavigateButton customNavigateButtonToSelection secondBox"
+                        text="{applicationData>/i18n/selection}"
+                        enabled="{path: 'applicationData>/selectionProducts', formatter: '.formatter.getButtonStateBySelectionProducts'}"
+                        press="onTogSelectionPress"
+                    />
+                    <Text
+                        id="idTogSelectionText"
+                        class="vcToggleText vcToggleTextSelection"
+                        textAlign="Center"
+                        width="auto"
+                        text="{parts: [{path: 'applicationData>/selectionProducts'},{path: 'applicationData>/currentConfiguration'}], formatter: '.formatter.getSelectionButtonInfo'}"
+                    >
+                        <layoutData>
+                            <FlexItemData styleClass="toSelectionArea" />
+                        </layoutData>
+                        <customData>
+                            <core:CustomData
+                                writeToDom="true"
+                                key="enabled"
+                                value="{path: 'applicationData>/selectionProducts', formatter: '.formatter.getEnabledByProductCount'}"
+                            />
+                        </customData>
+                    </Text>
+                    <layoutData>
+                        <FlexItemData minWidth="31.5%" />
+                    </layoutData>
+                </VBox>
+
+                <VBox
+                    id="right-triangle"
+                    class="triangle triangleganzgrau secondtriangle"
+                    height="4rem"
+                >
+                    <layoutData>
+                        <FlexItemData
+                            minWidth="2%"
+                            styleClass="triangleArea"
+                        />
+                    </layoutData>
+                </VBox>
+                <VBox
+                    height="4rem"
+                    width="100%"
+                >
+                    <ToggleButton
+                        id="idTogProdKonf"
+                        width="100%"
+                        class="vcTogBtn vcTogBtnProdKonf vcStartTogBtnBase customNavigateButton customNavigateButtonToSelection"
+                        text="{applicationData>/i18n/configuration}"
+                        enabled="false"
+                        press="onTogPordKonfPress"
+                        visible="{applicationData>/configScreen}"
+                    />
+                    <Text
+                        id="idTogPordKonfText"
+                        class="vcToggleText vcToggleTextProdKonf"
+                        textAlign="Center"
+                        width="auto"
+                        text="{applicationData>/i18n/enterKonfigDataSheet}"
+                        visible="{applicationData>/configScreen}"
+                    >
+                        <layoutData>
+                            <FlexItemData styleClass="toSelectionArea" />
+                        </layoutData>
+                        <customData />
+                    </Text>
+                    <layoutData>
+                        <FlexItemData minWidth="31.5%" />
+                    </layoutData>
+                </VBox>
+            </items>
+        </HBox>
+        <NavContainer id="navContainerProdFindung">
+            <pages>
+                <!-- Child views will be added here by the routing mechanism -->
+            </pages>
+        </NavContainer>
+    </Page>
+</mvc:View>
