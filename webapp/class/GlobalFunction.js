@@ -1040,7 +1040,6 @@ sap.ui.define(
             },
 
             populateCurrentConfigurationForSelection: function () {
-                debugger;
                 const results = this.applicationDataModelRead("/currentConfiguration");
                 const characteristicGroups = this.applicationDataModelRead("/characteristicCategories/1/characteristicGroups/results");
                 
