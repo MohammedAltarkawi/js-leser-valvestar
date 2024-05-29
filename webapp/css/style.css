@@ -8,6 +8,14 @@ span.fontStandardMand,
     margin-right: 1.5rem;
 }
 
+.sapMText {
+    font-family: 'Roboto', 'Roboto Light', 'Roboto Medium';
+}
+
+.sapMFT {
+    font-family: 'Roboto', 'Roboto Light', 'Roboto Medium';
+}
+
 div.customBusyDialog.sapMBusyDialog.sapMDialog {
     width: 500px !important;
     background-color: transparent !important;
