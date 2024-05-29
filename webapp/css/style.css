@@ -423,9 +423,9 @@ html.sap-desktop .sapMTB-Transparent-CTX .sapMBtnInner.sapMToggleBtnPressed,
     color: #ffffff !important;
 }
 
-.vcPanelHideExpand .sapMPanelWrappingDivTb .sapMBtnBase {
+/* .vcPanelHideExpand .sapMPanelWrappingDivTb .sapMBtnBase {
     visibility: hidden;
-}
+} */
 
 .tvcInfoButton {
     visibility: visible !important;
@@ -1022,9 +1022,9 @@ div.vcPanel div.sapMPanelContent {
     padding-left: 3rem;
 }
 
-div.vcPanelKonfig div.sapMPanelContent {
+/* div.vcPanelKonfig div.sapMPanelContent {
     padding: 0;
-}
+} */
 
 /*Info text popover */
 div.infoTextPopover.sapMPopover .sapMFT {
@@ -1229,7 +1229,7 @@ div.sizingCharacGroupSummaryVBox:hover {
     margin-left: 10px;
     padding: 3px;
     /* border: 1px solid black !important; */
-    margin-bottom: 1rem;
+    margin-bottom: 0.8rem;
 }
 
 .opacity50 {

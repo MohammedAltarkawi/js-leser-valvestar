@@ -199,7 +199,6 @@
                                 expandable="false"
                                 expanded="true"
                                 expandAnimation="false"
-                                expand="expandCharacteristicGroup"
                             >
                                 <headerToolbar>
                                     <OverflowToolbar height="5rem">

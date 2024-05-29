@@ -45,12 +45,7 @@
                                         items="{path: 'applicationData>/characteristicGroups'}">
                                         <items>
                                             <IconTabFilter text="{applicationData>VALUE_DISP}">
-                                                <Panel
-                                                    class="vcPanelHideExpand sapUiSmallMarginBottom vcPanelKonfig customGroupingPanel"
-                                                    expandable="true" expanded="true"
-                                                    expandAnimation="false"
-                                                    expand="expandCharacteristicGroup"
-                                                    visible="true">
+                                                <Panel>
                                                     <headerToolbar>
                                                         <OverflowToolbar>
                                                             <VBox>
