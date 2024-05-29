@@ -18,6 +18,7 @@ builder:
           client: "100"
         app:
           name: ZVC_VALVESTAR
+          description: Valvestar WEb UI5
           package: ZTVC_UI
           transport: T11K972229
         exclude:
