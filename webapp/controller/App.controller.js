@@ -71,7 +71,7 @@ sap.ui.define(
           this.globalFunction.applicationDataModelWrite("/backNavEnabled", true);
           this.globalFunction.applicationDataModelWrite("/expertSaveMode", true);
           this.globalFunction.applicationDataModelWrite("/configScreen", true);
-          if (urlParameter && urlParameter.screen && urlParameter.screen == "2") {
+          if (urlParameter && urlParameter.screen && urlParameter.screen === "2") {
               this.globalFunction.applicationDataModelWrite("/configScreen", false);
           }
 

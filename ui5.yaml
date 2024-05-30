@@ -18,12 +18,12 @@ server:
         backend:
           - path: /sap
             #LESER T11
-            url: http://vsaptest.leser.com:8000/
-            client: '200'
+            #url: http://vsaptest.leser.com:8000/
+            #client: '200'
 
             #LESER Q11
-            #url: http://vsaptest.leser.com:8000/
-            #client: '350'
+            url: http://vsapq.leser.com:8030/
+            client: '350'
 
             #LESER P11
             #url: http://vsapdb.leser.com:8000/

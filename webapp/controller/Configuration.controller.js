@@ -5,7 +5,6 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
             var that = this;
             Controller.prototype.onInit.apply(this, arguments);
             this.getOwnerComponent().getRouter().getRoute("ConfigurationRoute").attachPatternMatched(this._onPatternMatched, this);
-            //this.globalFunction.applicationDataModelWrite('/currentConfiguration', []);
             this.globalFunction.applicationDataModelWrite("/currentConfigurationForSelection", []);
             this.globalFunction.applicationDataModelWrite("/currentConfigurationForKonfig", []);
             var oViewModel = new JSONModel({
@@ -15,7 +14,6 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
             this.getView().setModel(oViewModel, "viewModel");
 
             var oVBox = this.getView().byId("sizingCharactGroupVBox");
-            //this.globalFunction.applicationModelWrite('/controls / sizingCharacteristicGroup ', oVBox);
             oVBox.onAfterRendering = function () {
                 if (sap.m.VBox.prototype.onAfterRendering) {
                     sap.m.VBox.prototype.onAfterRendering.apply(this, arguments);
@@ -119,7 +117,7 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
                                     return a.ID - b.ID;
                                 });
 
-                                let foundIndex = grouping.characteristics.results.findIndex(element => element.ID == val[0].ID);
+                                let foundIndex = grouping.characteristics.results.findIndex(element => element.ID === val[0].ID);
                                 grouping.characteristics.results.filter(element => element.ID !== val[1].ID);
                                 val[0].UNIT = val[1];
                                 grouping.characteristics.results[foundIndex] = val[0];
@@ -164,7 +162,7 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
             var aCustData = oEvent.getSource().getCustomData(),
                 sGrpId = "";
             for (var j = 0; j < aCustData.length; j++) {
-                if (aCustData[j].getKey() == "grpId") {
+                if (aCustData[j].getKey() === "grpId") {
                     sGrpId = aCustData[j].getValue();
                 }
             }
@@ -178,7 +176,7 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
                     var aCustData = oItem.getCustomData(),
                         sGenGrpId = "";
                     for (var j = 0; j < aCustData.length; j++) {
-                        if (aCustData[j].getKey() == "grpId") {
+                        if (aCustData[j].getKey() === "grpId") {
                             sGenGrpId = aCustData[j].getValue();
                         }
                     }
@@ -192,7 +190,7 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
                 });
         },
 
-        expandCharacteristicGroup: function (t) {
+        /* expandCharacteristicGroup: function (t) {
             if (!t.getParameter("triggeredByInteraction")) {
                 return;
             }
@@ -210,7 +208,7 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
                     e.setExpanded(false);
                 }
             });
-        },
+        }, */
         navigateToSelection: function () {
             this.globalFunction.navigateToSelection();
         }

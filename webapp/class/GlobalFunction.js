@@ -565,13 +565,7 @@ sap.ui.define(
                     content: new Text({
                         text: bodyText
                     }),
-                    beginButton: new Button({
-                        type: "Emphasized",
-                        icon: "sap-icon://accept",
-                        press: function (oEvent) {
-                            oEvent.getSource().getParent().close();
-                        }
-                    }).addStyleClass("vcButtonBlue")
+                    beginButton: this.getLESERDialogButton()
                 });
                 this.applicationModelWrite("/controls/saveDialog", saveDialog);
                 return saveDialog;
@@ -586,13 +580,7 @@ sap.ui.define(
                     content: new Text({
                         text: JSON.parse(data.responseText).error.message.value + "\n Error Code: " + JSON.parse(data.responseText).error.code
                     }),
-                    beginButton: new Button({
-                        type: "Emphasized",
-                        icon: "sap-icon://accept",
-                        press: function () {
-                            this.saveDialog.close();
-                        }.bind(this)
-                    }).addStyleClass("vcButtonBlue")
+                    beginButton: this.getLESERDialogButton()
                 });
                 this.applicationModelWrite("/controls/saveDialog", this.saveDialog);
                 return this.saveDialog;
@@ -2863,9 +2851,10 @@ sap.ui.define(
                         })
                     ],
                     endButton: new Button({
-                        text: this.getText("close"),
+                        type: "Emphasized",
+                        icon: "sap-icon://accept",
                         press: fnClose
-                    })
+                    }).addStyleClass("vcButtonBlue")
                 }).addStyleClass("sapUiResponsiveContentPadding");
 
                 popover.openBy(evt.getSource());
@@ -3094,14 +3083,19 @@ sap.ui.define(
                     title: "Error",
                     state: "Error",
                     content: new Text({ text: text }),
-                    beginButton: new Button({
-                        type: "Emphasized",
-                        icon: "sap-icon://accept",
-                        press: function (evt) {
-                            evt.getSource().getParent().close();
-                        }
-                    }).addStyleClass("vcButtonBlue")
+                    beginButton: this.getLESERDialogButton()
                 });
+            },
+
+
+            getLESERDialogButton(){
+                return  new Button({
+                    type: "Emphasized",
+                    icon: "sap-icon://accept",
+                    press: function (evt) {
+                        evt.getSource().getParent().close();
+                    }
+                }).addStyleClass("vcButtonBlue");
             },
 
             browserIsIe: function () {

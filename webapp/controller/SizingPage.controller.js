@@ -1,3 +1,4 @@
+/* eslint-disable guard-for-in */
 /* eslint-disable max-depth */
 /* eslint-disable max-statements */
 /* eslint-disable complexity */
@@ -440,7 +441,7 @@ sap.ui.define(
                         if (!this._bExpertLoaded) {
                             fnCarSuccess = function (data, response) {
                                 this.globalFunction.setCategoryModelData(data, response, true);
-                                this._expBuild();
+                                //this._expBuild();
                                 this.getView().byId("sbWizExp").setSelectedKey("02");
                                 this.getView().getModel("sizingModel").setProperty("/mode", "02");
                             }.bind(this);
@@ -555,7 +556,7 @@ sap.ui.define(
                         this.$().height(height - 10 + "px");
                         var sCSS = this.aCustomStyleClasses;
                         for (var i = 0; i < sCSS.length; i++) {
-                            if (sCSS[i] == "rotate90Sub") {
+                            if (sCSS[i] === "rotate90Sub") {
                                 this.$()
                                     .parent()
                                     .css("padding-top", (this.$().parent().parent().height() - this.$().parent().height()) / 2);
