@@ -8,6 +8,14 @@ span.fontStandardMand,
     margin-right: 1.5rem;
 }
 
+.sapMITBSelected .sapMITBContentArrow::after {
+    background: #325064;
+}
+
+.sapMITBTextOnly .sapMITBFilterDefault.sapMITBSelected .sapMITBText {
+    color: #325064;
+}
+
 .sapMText {
     font-family: 'Roboto', 'Roboto Light', 'Roboto Medium';
 }

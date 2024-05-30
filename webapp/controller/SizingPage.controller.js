@@ -151,8 +151,8 @@ sap.ui.define(
 
             _onPatternMatched: function (oEvent) {
                 this.matnr = oEvent.getParameter("arguments").matnr;
-                this.getView().byId("sizingExpR").destroyItems();
-                this.getView().byId("sizingExpL").destroyItems();
+                //this.getView().byId("sizingExpR").destroyItems();
+                //this.getView().byId("sizingExpL").destroyItems();
                 // Set toogle button selected
                 this.globalFunction.setPressedToggleButton("idTogSizing");
                 if (this.globalFunction.getApplicationModel().getProperty("/customizing/productFindingAttrib")) {
@@ -194,7 +194,7 @@ sap.ui.define(
             _setCategoryModelData: function (data, response) {
                 // Set first Panel expandable
                 this.globalFunction.setCategoryModelData(data, response, true);
-                this._expBuild();
+                //this._expBuild();
                 var viewType = this.applicationModel.getProperty("/customizing/sizingViewType");
 
                 if (
@@ -441,7 +441,7 @@ sap.ui.define(
                         if (!this._bExpertLoaded) {
                             fnCarSuccess = function (data, response) {
                                 this.globalFunction.setCategoryModelData(data, response, true);
-                                //this._expBuild();
+                                this._expBuild();
                                 this.getView().byId("sbWizExp").setSelectedKey("02");
                                 this.getView().getModel("sizingModel").setProperty("/mode", "02");
                             }.bind(this);

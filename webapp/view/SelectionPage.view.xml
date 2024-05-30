@@ -219,7 +219,7 @@
                         <Panel
                             id="pnSizingData"
                             height="100%"
-                            class="splitLayoutPanelStyle vcBackgroundPage sapUiSmallMarginBottom vcPanel"
+                            class="splitLayoutPanelStyle vcBackgroundPage sapUiSmallMarginBottom"
                         >
                             <layoutData>
                                 <l:SplitterLayoutData />
