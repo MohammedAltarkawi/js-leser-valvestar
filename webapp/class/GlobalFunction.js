@@ -1029,10 +1029,55 @@ sap.ui.define(
 
             populateCurrentConfigurationForSelection: function () {
                 const results = this.applicationDataModelRead("/currentConfiguration");
-                const characteristicGroups = this.applicationDataModelRead("/characteristicCategories/1/characteristicGroups/results");
-                
-                
+               
                 let oModel = [];
+                if (this.applicationModelRead("/customizing/sizingViewType") === "02") {
+                    const groupL = this.applicationDataModelRead(
+                        "/characteristicGroupsExpL"
+                      );
+                      const groupR = this.applicationDataModelRead(
+                        "/characteristicGroupsExpR"
+                      );
+                      const characteristicGroups = groupL.concat(groupR);
+                      characteristicGroups.forEach((e) => {
+
+                        let obj = {
+                            key: "<strong>" + e.DESCRIPTION + "<strong>",
+                            text: ""
+                        };
+                        oModel.push(obj);
+                        e.characteristics.results.forEach((c) =>{
+                            if(c.GRUPPE === e.GRUPPE){
+                                if(c.values.results.length > 1){
+                                    for (let i = 0; i < c.values.results.length; i++) {
+                                        //c.values.results[i];
+                                        let key = (i === 0 ) ? c.ATBEZ : " ";
+                                        let obj = { 
+                                            key: key ,
+                                            text: c.values.results[i].ATWRT_DISP
+                                        };
+
+                                        oModel.push(obj);
+                                    }
+
+                                } else if(c.values.results.length === 1) {
+                                let obj = {
+                                    key: c.ATBEZ ,
+                                    text: c.values.results[0].ATWRT_DISP
+                                };
+                                oModel.push(obj);
+                            }
+    
+                                
+                            }
+                        });
+                    });
+
+
+
+
+                } else {
+                const characteristicGroups = this.applicationDataModelRead("/characteristicCategories/1/characteristicGroups/results");         
                 characteristicGroups.forEach(function (group) {
                     delete group.groupings;
                     let obj = {
@@ -1054,6 +1099,7 @@ sap.ui.define(
                     
                
                 });
+            }
                 
 
                 this.applicationDataModelWrite("/currentConfigurationForSelection", oModel, false);
