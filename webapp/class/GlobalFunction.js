@@ -1044,7 +1044,7 @@ sap.ui.define(
                         if (char.GRUPPE === group.GRUPPE) {
                             let obj = {
                                 key: char.ATBEZ ,
-                                text: char.ATWRT
+                                text: char.ATWTB
                             };
 
                             oModel.push(obj);
@@ -3204,7 +3204,7 @@ sap.ui.define(
                 xhttp.onreadystatechange = function () {
                     // 4 means request is finished and response is ready
                     // 200 means request is just fine
-                    if (this.readyState == 4 && this.status == 200) {
+                    if (this.readyState === 4 && this.status === 200) {
                         // "this" refers here to the XHR object
                         var oResult = JSON.parse(this.response).Texts;
 
