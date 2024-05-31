@@ -20,6 +20,6 @@ builder:
           name: ZVC_VALVESTAR
           description: Valvestar Web UI5
           package: ZTVC_UI
-          transport: T11K971665
+          transport: T11K972419
         exclude:
           - /test/

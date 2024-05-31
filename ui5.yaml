@@ -22,12 +22,12 @@ server:
             #client: '200'
 
             #LESER Q11
-            url: http://vsapq.leser.com:8030/
-            client: '350'
+            #url: http://vsapq.leser.com:8030/
+            #client: '350'
 
             #LESER P11
-            #url: http://vsapdb.leser.com:8000/
-            #client: '150'
+            url: http://vsapdb.leser.com:8000/
+            client: '150'
             
             #E64
             #url: http://awss6762i.gba.sap.msgcloud.de:8000/
