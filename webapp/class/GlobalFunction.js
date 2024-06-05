@@ -1,3 +1,5 @@
+/* eslint-disable no-console */
+/* eslint-disable fiori-custom/sap-no-hardcoded-url */
 /* eslint-disable max-depth */
 /* eslint-disable complexity */
 /* eslint-disable no-shadow */
@@ -131,7 +133,8 @@ sap.ui.define(
                                     }
                                 } else {
                                     that.applicationDataModelWrite("/busyStart", false);
-                                    var oDialog = that.getErrorDialog();
+                                    $("#overlay").remove();
+                                    const oDialog = that.getErrorDialog("Instance Issue");
                                     oDialog.open();
                                 }
                             },
@@ -250,7 +253,7 @@ sap.ui.define(
                     return false;
                 }
             },
-            //TODO these are never called
+
             _loadBomInstanceSuccess: function (data, response) {
                 this.applicationDataCurrentInstanceWrite(data.CONFIG_SELF);
                 this.navigateToSizing();
@@ -541,16 +544,15 @@ sap.ui.define(
             },
 
             openBusyDialog: function () {
-                var busyDialog = this.getBusyDialog();
+                const busyDialog = this.getBusyDialog();
                 if (!busyDialog) {
                     return null;
                 }
                 return busyDialog.open();
             },
-            //TODO Problem
             closeBusyDialog: function () {
-                var busyDialog = this.getBusyDialog();
-                if (!busyDialog) {
+                const busyDialog = this.getBusyDialog();
+                if (!busyDialog || busyDialog.isDestroyed()) {
                     return null;
                 }
                 return busyDialog.close();
@@ -3171,7 +3173,7 @@ sap.ui.define(
                     return false;
                 }
             },
-
+            
             downloadPdf: function () {
                 this.getComponent()
                     .getModel()
@@ -3189,7 +3191,8 @@ sap.ui.define(
                             this.rotatePrintButton(false);
                         },
                         error: function (oError) {
-                            this.getErrorDialog("No Download-File available");
+                            const oDialog = this.getErrorDialog("No Download-File available");
+                            oDialog.open();
                         }
                     });
             },
@@ -3202,7 +3205,8 @@ sap.ui.define(
                     window.location.href = href.href;
                 }.bind(this);
                 var fnError = function (error) {
-                    this.getErrorDialog("Language Error");
+                    const oDialog = this.getErrorDialog("Language Error");
+                    oDialog.open();
                 }.bind(this);
                 if (oEvent.getParameter("selectedItem")) {
                     var language = oEvent.getParameter("selectedItem").getBindingContext("applicationData").getObject("LAISO");
@@ -3226,7 +3230,8 @@ sap.ui.define(
                     }
                 }.bind(this);
                 var fnError = function (error) {
-                    this.getErrorDialog("Language Error");
+                    const oDialog = this.getErrorDialog("Language Error");
+                    oDialog.open();
                 }.bind(this);
                 if (this.applicationModelRead("/controls/langSelect").getSelectedItem()) {
                     const sLang = this.applicationDataModelRead("/systemLanguage");

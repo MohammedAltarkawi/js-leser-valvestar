@@ -111,25 +111,8 @@ sap.ui.define([
                         window.location.hash = "";
                         window.location.search = newSearch + sParameter + item;
                     } else {
-                        var loadConfigErrorDialog = new sap.m.Dialog({
-                            type: "Message",
-                            title: "Error",
-                            state: "Error",
-                            content: new sap.m.Text({
-                                text: this.globalFunction.getText("IDIsInvalid")
-                            }),
-                            buttons: [
-                                new sap.m.Button({
-                                    type: "Emphasized",
-                                    icon: "sap-icon://accept",
-                                    press: function (oEvent) {
-                                        oEvent.getSource().getParent().close();
-                                    }
-                                }).addStyleClass("vcButtonBlue")
-                            ]
-                        });
-    
-                        loadConfigErrorDialog.open();
+                        const oErrorDialog = this.globalFunction.getErrorDialog(this.globalFunction.getText("IDIsInvalid"));                           
+                        oErrorDialog.open();
                     }
                 } else {
                     // Remove existing configid or configuuid parameter

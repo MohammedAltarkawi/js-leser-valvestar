@@ -77,7 +77,9 @@ sap.ui.define(
                 } else {
                     sap.ui.getCore().byId('__select0').setSelectedKey('EN');
                 } */
+                if(this.globalFunction.applicationModelRead("/controls/langSelect").getEnabled()){
                 this.globalFunction.initLang();
+            }
                 /* sap.ui
                     .getCore()
                     .byId('__select0')
@@ -151,9 +153,8 @@ sap.ui.define(
 
             _onPatternMatched: function (oEvent) {
                 this.matnr = oEvent.getParameter("arguments").matnr;
-                //this.getView().byId("sizingExpR").destroyItems();
-                //this.getView().byId("sizingExpL").destroyItems();
-                // Set toogle button selected
+                //this._bExpertLoaded = false;
+                 // Set toogle button selected
                 this.globalFunction.setPressedToggleButton("idTogSizing");
                 if (this.globalFunction.getApplicationModel().getProperty("/customizing/productFindingAttrib")) {
                     var that = this;
@@ -194,7 +195,8 @@ sap.ui.define(
             _setCategoryModelData: function (data, response) {
                 // Set first Panel expandable
                 this.globalFunction.setCategoryModelData(data, response, true);
-                //this._expBuild();
+                //debugger;
+                this._expBuild();
                 var viewType = this.applicationModel.getProperty("/customizing/sizingViewType");
 
                 if (
@@ -394,8 +396,8 @@ sap.ui.define(
             },
 
             toggleSizingView: function (evt) {
-                this.globalFunction.applicationModelWrite("/customizing/sizingViewType", evt.getParameter("item").getKey());
-                var fnTest = function (evt) {
+                const sViewType  = evt.getParameter("item").getKey();
+              /*   var fnTest = function (evt) {
                     //	 Switch MSG - LESER unten
                     var fnCarSuccess = null;
                     if (evt.getParameter("item").getKey() === "02") {
@@ -426,7 +428,7 @@ sap.ui.define(
                     this.globalFunction.getCharacteristicCategoryWithGroups(fnCarSuccess);
                     this.globalFunction.getCurrentConfiguration();
                     this.globalFunction.getProductsForSelection();
-                }.bind(this);
+                }.bind(this); */
 
                 var fnToggle = function (evt) {
                     var fnCarSuccess = null;
@@ -437,7 +439,7 @@ sap.ui.define(
                         this.globalFunction.getCurrentConfiguration();
                         this.globalFunction.getProductsForSelection();
                     }.bind(this);
-                    if (evt.getParameter("item").getKey() === "02") {
+                    if (sViewType === "02") {
                         if (!this._bExpertLoaded) {
                             fnCarSuccess = function (data, response) {
                                 this.globalFunction.setCategoryModelData(data, response, true);
@@ -460,10 +462,13 @@ sap.ui.define(
                             this.getView().getModel("sizingModel").setProperty("/mode", "01");
                         }.bind(this);
                     }
-                    this.setCharacteristicValue("SC_WEB_UI_VIEW", evt.getParameter("item").getKey(), fnSuccess, null);
+            
+                        this.globalFunction.applicationModelWrite("/customizing/sizingViewType", sViewType);
+                        this.setCharacteristicValue("SC_WEB_UI_VIEW", sViewType, fnSuccess, null);
+                  
+                    
                 }.bind(this);
-                this.globalFunction.applicationModelWrite("/customizing/sizingViewType", evt.getParameter("item").getKey());
-                window.location.host.includes(".dispatcher.hana.ondemand") ? fnTest(evt) : fnToggle(evt);
+                fnToggle(evt);
             },
 
             _fireBindingChange: function () {
@@ -477,15 +482,17 @@ sap.ui.define(
             },
 
             _expBuild: function () {
-                var aLCards = this.applicationDataModel.getObject("/characteristicGroupsExpL");
-                for (var i = 0; i < aLCards.length; i++) {
-                    var oCtx = this.applicationDataModel.getContext("/characteristicGroupsExpL/" + i);
+                this.getView().byId("sizingExpR")?.destroyItems();
+                this.getView().byId("sizingExpL")?.destroyItems();
+                const aLCards = this.applicationDataModel.getObject("/characteristicGroupsExpL");
+                for (let i = 0; i < aLCards.length; i++) {
+                    let oCtx = this.applicationDataModel.getContext("/characteristicGroupsExpL/" + i);
                     this.getView().byId("sizingExpL").addItem(this._buildExpertView(oCtx));
                 }
 
-                var aRCards = this.applicationDataModel.getObject("/characteristicGroupsExpR");
-                for (var i = 0; i < aRCards.length; i++) {
-                    var oCtx = this.applicationDataModel.getContext("/characteristicGroupsExpR/" + i);
+                const aRCards = this.applicationDataModel.getObject("/characteristicGroupsExpR");
+                for (let i = 0; i < aRCards.length; i++) {
+                    let oCtx = this.applicationDataModel.getContext("/characteristicGroupsExpR/" + i);
                     this.getView().byId("sizingExpR").addItem(this._buildExpertView(oCtx));
                 }
             },
