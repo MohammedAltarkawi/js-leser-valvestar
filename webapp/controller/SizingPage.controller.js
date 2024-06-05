@@ -195,7 +195,6 @@ sap.ui.define(
             _setCategoryModelData: function (data, response) {
                 // Set first Panel expandable
                 this.globalFunction.setCategoryModelData(data, response, true);
-                //debugger;
                 this._expBuild();
                 var viewType = this.applicationModel.getProperty("/customizing/sizingViewType");
 

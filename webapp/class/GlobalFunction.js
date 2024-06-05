@@ -133,6 +133,7 @@ sap.ui.define(
                                     }
                                 } else {
                                     that.applicationDataModelWrite("/busyStart", false);
+                                    $("body").css("cursor", "default");
                                     $("#overlay").remove();
                                     const oDialog = that.getErrorDialog("Instance Issue");
                                     oDialog.open();
