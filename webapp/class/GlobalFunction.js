@@ -1,3 +1,6 @@
+/* eslint-disable fiori-custom/sap-no-dom-insertion */
+/* eslint-disable no-redeclare */
+/* eslint-disable fiori-custom/sap-no-location-reload */
 /* eslint-disable max-len */
 /* eslint-disable consistent-return */
 /* eslint-disable camelcase */
@@ -94,7 +97,6 @@ sap.ui.define(
                                                     $("body").css("cursor", "default");
                                                     $("#overlay").remove();
                                                     if ((data && data.VALUE !== "I") || data.messages.results.length < 1) {
-                                                        //TODO better code
                                                         that.getCharacteristicCategoryWithGroups(
                                                             function (instanceData) {
                                                                 //that.navigateToConfiguration(that.cmp);
@@ -738,7 +740,6 @@ sap.ui.define(
                 if (currentRoute === "ConfigurationRoute") {
                     this.getSideNavigation();
                 } else {
-                    //TODO one line to delete
                     this.getCharacteristicCategoryWithGroups();
                     if (!isConfiguration) {
                         this.getProductsForSelection();
@@ -1901,8 +1902,14 @@ sap.ui.define(
             },
 
             cleanLink: function () {
-                const newSearch = window.location.search.replace(/&?config(?:id|uuid)=[^&]*/g, "");
-                window.location.search = newSearch.startsWith("&") ? newSearch.substring(1) : newSearch;
+                const newUrl = new URL(window.location.href);
+              newUrl.searchParams.delete("configid");
+              newUrl.searchParams.delete("configuuid");
+              window.history.replaceState({}, "", newUrl);
+              window.location.reload();
+
+                //const newSearch = window.location.search.replace(/&?config(?:id|uuid)=[^&]*/g, "");
+                //window.location.search = newSearch.startsWith("&") ? newSearch.substring(1) : newSearch;
             },
 
             createCharacteristicControlConfig: function (id, context) {
@@ -3208,9 +3215,10 @@ sap.ui.define(
             onLanguageChangeCell: function (oEvent) {
                 var fnSuccess = function (data, response) {
                     this.getComponent().getRouter().navTo("startPage");
-                    const href = new URL(window.location.href);
-                    href.searchParams.set("sap-language", this.applicationDataModelRead("/systemLanguage"));
-                    window.location.href = href.href;
+                    const newUrl = new URL(window.location.href);
+                    newUrl.searchParams.set("sap-language", this.applicationDataModelRead("/systemLanguage"));
+                    window.history.replaceState({}, "", newUrl);
+                    window.location.reload();  
                 }.bind(this);
                 var fnError = function (error) {
                     const oDialog = this.getErrorDialog("Language Error");

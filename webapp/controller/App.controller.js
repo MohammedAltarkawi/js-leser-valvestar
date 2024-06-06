@@ -1,3 +1,6 @@
+/* eslint-disable fiori-custom/sap-no-location-reload */
+/* eslint-disable camelcase */
+/* eslint-disable guard-for-in */
 /* eslint-disable max-statements */
 sap.ui.define(
     [
@@ -55,9 +58,10 @@ sap.ui.define(
           if (urlParameter && urlParameter["sap-language"] && urlParameter["sap-language"].length > 0) {
               this.globalFunction.applicationDataModelWrite("/systemLanguage", urlParameter["sap-language"]);
           } else {
-              const href = new URL(window.location.href);
-              href.searchParams.set("sap-language", "EN");
-              window.location.href = href.href;
+              const newUrl = new URL(window.location.href);
+              newUrl.searchParams.set("sap-language", "EN");
+              window.history.replaceState({}, "", newUrl);
+              window.location.reload();
           }
 
           if (urlParameter && urlParameter.ui5authtoken && urlParameter.ui5authtoken.length > 0) {
@@ -146,8 +150,11 @@ sap.ui.define(
                                       press: function (evt) {
                                           evt.getSource().getParent().close();
                                           //this["TVC/VC_UI5/class/GlobalFunction"].prototype["cleanLink"]()
-                                          const newSearch = window.location.search.replace(/&?config(?:id|uuid)=[^&]*/g, "");
-                                          window.location.search = newSearch.startsWith("&") ? newSearch.substring(1) : newSearch;
+                                          const newUrl = new URL(window.location.href);
+                                          newUrl.searchParams.delete("configid");
+                                          newUrl.searchParams.delete("configuuid");
+                                          window.history.replaceState({}, "", newUrl);
+                                          window.location.reload();
                                       }
                                   }).addStyleClass("vcButtonBlue")
                               });
