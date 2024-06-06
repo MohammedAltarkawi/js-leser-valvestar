@@ -1,3 +1,4 @@
+/* eslint-disable fiori-custom/sap-no-location-reload */
 sap.ui.define([
     "com/leser/valvestar/controller/BaseController"
 ],
@@ -95,28 +96,33 @@ sap.ui.define([
                 const item = oEvent.getParameter("query");
     
                 if (item !== "" && !oEvent.getParameter("clearButtonPressed")) {
-                    const oLink = window.location.search;
+                    //const oLink = window.location.search;
                     let sParameter;
     
                     if (item.length === 26) {
-                        sParameter = "&configuuid=";
+                        sParameter = "configuuid";
                     } else if (item.length <= 10 && this._isNumber(item)) {
-                        sParameter = "&configid=";
+                        sParameter = "configid";
                     }
     
                     if (sParameter) {
                         // Remove existing configid or configuuid parameter
-                        const newSearch = oLink.replace(/&?config(?:id|uuid)=[^&]*/g, "");
+                        //const newSearch = oLink.replace(/&?config(?:id|uuid)=[^&]*/g, "");
                         // Add the new parameter
-                        window.location.hash = "";
-                        window.location.search = newSearch + sParameter + item;
+                        
+                        this.globalFunction.getComponent().getRouter().getHashChanger().setHash("");
+                        var newUrl = new URL(window.location.href);
+                        newUrl.searchParams.set(sParameter, item);
+                        window.history.replaceState({}, "", newUrl);
+                        window.location.reload();
+                        //window.location.search = newSearch + sParameter + item;
                     } else {
                         const oErrorDialog = this.globalFunction.getErrorDialog(this.globalFunction.getText("IDIsInvalid"));                           
                         oErrorDialog.open();
                     }
                 } else {
                     // Remove existing configid or configuuid parameter
-                    window.location.hash = "";
+                    this.globalFunction.getComponent().getRouter().getHashChanger().setHash("");
                     this.globalFunction.cleanLink();
                 }
             },
@@ -162,10 +168,10 @@ sap.ui.define([
             _successSave: function (data, response) {
                 this.globalFunction.rotateSaveButton(false);
                 if (data.statusCode === "400") {
-                    var oDialog = this.globalFunction.createSaveDialogError(data);
+                    let oDialog = this.globalFunction.createSaveDialogError(data);
                     oDialog.open();
                 } else {
-                    var oDialog = this.globalFunction.createSaveDialog(data.CONFIG_UUID);
+                    let oDialog = this.globalFunction.createSaveDialog(data.CONFIG_UUID);
                     oDialog.open();
                 }
             },

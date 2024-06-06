@@ -8,9 +8,10 @@ sap.ui.define([
         "com/leser/valvestar/model/models",
         "com/leser/valvestar/class/BackendRead", 
         "com/leser/valvestar/class/BackendWrite",
-        "sap/ui/model/json/JSONModel"
+        "sap/ui/model/json/JSONModel",
+        "sap/ui/core/Core"
     ],
-    function (UIComponent, Device, models, BackendRead, BackendWrite,  JSONModel) {
+    function (UIComponent, Device, models, BackendRead, BackendWrite,  JSONModel, Core) {
         "use strict";
 
         return UIComponent.extend("com.leser.valvestar.Component", {
@@ -32,8 +33,8 @@ sap.ui.define([
 
                 // set the device model
                 this.setModel(models.createDeviceModel(), "device");
-            
-                sap.ui.getCore()._tvcComponent = this;
+                
+                Core._tvcComponent = this;
 
                 //global header
                 //this.setModel(new JSONModel(), "globalHeaderModel");

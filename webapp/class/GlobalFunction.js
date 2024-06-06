@@ -1,3 +1,8 @@
+/* eslint-disable max-len */
+/* eslint-disable consistent-return */
+/* eslint-disable camelcase */
+/* eslint-disable guard-for-in */
+/* eslint-disable max-params */
 /* eslint-disable no-console */
 /* eslint-disable fiori-custom/sap-no-hardcoded-url */
 /* eslint-disable max-depth */
@@ -20,9 +25,10 @@ sap.ui.define(
         "sap/m/CustomListItem",
         "sap/m/ComboBox",
         "sap/m/MultiComboBox",
-        "sap/m/RadioButtonGroup"
+        "sap/m/RadioButtonGroup",
+        "sap/ui/core/Core"
     ],
-    function (UIObject, formatter, Dialog, Button, FlexItemData, Title, Text, VBox, HBox, Image, Input, List, CustomListItem, ComboBox, MultiComboBox, RadioButtonGroup) {
+    function (UIObject, formatter, Dialog, Button, FlexItemData, Title, Text, VBox, HBox, Image, Input, List, CustomListItem, ComboBox, MultiComboBox, RadioButtonGroup, Core) {
         "use strict";
 
         return UIObject.extend("com.leser.valvestar.class.GlobalFunction", {
@@ -73,7 +79,7 @@ sap.ui.define(
                                 });
                                 // Load instance
                                 if (resultInstance) {
-                                    if (that.getApplicationModel().getProperty("/customizing/sizingMaterial").toUpperCase() != resultInstance.bom_compnt) {
+                                    if (that.getApplicationModel().getProperty("/customizing/sizingMaterial").toUpperCase() !== resultInstance.bom_compnt) {
                                         that.loadBomInstance(
                                             {
                                                 instance: resultInstance.CONFIG_SELF
@@ -159,11 +165,11 @@ sap.ui.define(
                 } else {
                     try {
                         if (!this.applicationDataModelRead("/configScreen")) {
-                            var oDialogSave = this.createSaveDialog();
+                            let oDialogSave = this.createSaveDialog();
                             oDialogSave.open();
                         }
                     } catch (e) {
-                        var oDialogSave = this.createSaveDialog();
+                        let oDialogSave = this.createSaveDialog();
                         oDialogSave.open();
                     }
                 }
@@ -293,7 +299,7 @@ sap.ui.define(
                                     return a.ID - b.ID;
                                 });
 
-                                let foundIndex = grouping.characteristics.results.findIndex(element => element.ID == val[0].ID);
+                                let foundIndex = grouping.characteristics.results.findIndex(element => element.ID === val[0].ID);
                                 grouping.characteristics.results.filter(element => element.ID !== val[1].ID);
                                 val[0].UNIT = val[1];
                                 grouping.characteristics.results[foundIndex] = val[0];
@@ -312,7 +318,7 @@ sap.ui.define(
 
             getComponent: function () {
                 try {
-                    return sap.ui.getCore()._tvcComponent || null;
+                    return Core._tvcComponent || null;
                 } catch (err) {
                     this.showLogOnConsole(err);
                     return false;
@@ -657,7 +663,7 @@ sap.ui.define(
                 const isConfigID = this.applicationDataModelRead("/isExistingConfigID");
                 if ((isConfigUUID === false || isConfigUUID === undefined) && (isConfigID === false || isConfigID === undefined)) {
                     try {
-                        var parameter = {
+                        let parameter = {
                             action: "startConfiguration"
                         };
                         if (headers) {
@@ -675,7 +681,7 @@ sap.ui.define(
                     }
                 } else {
                     try {
-                        var parameter = {
+                        let parameter = {
                             action: "startConfiguration"
                         };
                         if (headers) {
@@ -2241,7 +2247,7 @@ sap.ui.define(
                     this.applicationDataModelWrite("/changedData", []);
 
                     if (deleteData.length > 0) {
-                        var parameter = {
+                        let parameter = {
                             action: "deleteCharacteristicValue",
                             busy: true,
                             keys: {
@@ -2257,7 +2263,7 @@ sap.ui.define(
                     }
 
                     if (changeData.length > 0) {
-                        var parameter = {
+                        let parameter = {
                             action: "setCharacteristicValue",
                             busy: true,
                             keys: {
@@ -2565,8 +2571,8 @@ sap.ui.define(
                 var selectedItem = evt.getSource().getSelectedItem();
                 if (selectedItem) {
                     var object = selectedItem.getBindingContext("applicationData").getObject();
-                    var characteristic = evt.getSource()._atnam;
-                    var characteristicValue = object.ATWRT;
+                    let characteristic = evt.getSource()._atnam;
+                    let characteristicValue = object.ATWRT;
                     if (this.applicationDataModelRead("/expertSaveMode") && this.applicationModelRead("/customizing/sizingViewType") === "02") {
                         let data = this.applicationDataModelRead("/changedData");
                         data.push({
@@ -2590,8 +2596,8 @@ sap.ui.define(
                     }
                 } else {
                     if (this.applicationDataModelRead("/expertSaveMode") && this.applicationModelRead("/customizing/sizingViewType") === "02") {
-                        var characteristic = evt.getSource()._atnam;
-                        var characteristicValue = evt.getSource()._atwrt;
+                        let characteristic = evt.getSource()._atnam;
+                        let characteristicValue = evt.getSource()._atwrt;
                         let data = this.applicationDataModelRead("/changedData");
                         data.push({
                             mode: "D",
@@ -2650,8 +2656,8 @@ sap.ui.define(
                     }
                 } else {
                     if (this.applicationDataModelRead("/expertSaveMode") && this.applicationModelRead("/customizing/sizingViewType") === "02") {
-                        var characteristic = evt.getSource()._atnam;
-                        var characteristicValue = evt.getSource()._atwrt;
+                        let characteristic = evt.getSource()._atnam;
+                        let characteristicValue = evt.getSource()._atwrt;
                         let data = this.applicationDataModelRead("/changedData");
                         data.push({
                             mode: "D",
@@ -2795,7 +2801,7 @@ sap.ui.define(
                 xhttp.onreadystatechange = function () {
                     // 4 means request is finished and response is ready
                     // 200 means request is just fine
-                    if (this.readyState == 4 && this.status == 200) {
+                    if (this.readyState === 4 && this.status === 200) {
                         // "this" refers here to the XHR object
                         var oResult = JSON.parse(this.response).Documents;
                         var aDocs = [],
@@ -3124,14 +3130,15 @@ sap.ui.define(
             },
 
             getErrorDialog(text) {
-                if (!text) {
-                    text = "Something went wrong";
+                let sText = text;
+                if (!sText) {
+                    sText = "Something went wrong";
                 }
                 return new Dialog({
                     type: "Message",
                     title: "Error",
                     state: "Error",
-                    content: new Text({ text: text }),
+                    content: new Text({ text: sText }),
                     beginButton: this.getLESERDialogButton()
                 });
             },

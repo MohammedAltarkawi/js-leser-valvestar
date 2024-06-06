@@ -90,7 +90,7 @@ sap.ui.define(
                 const oSizingCharBox = this.getView().byId("sizingCharactGroupVBox");
                 oSizingCharBox.addEventDelegate(
                     {
-                        onAfterRendering: function (oEvent) {
+                        onAfterRendering: function () {
                             if (oSizingCharBox.getItems().length > 0) {
                                 oSizingCharBox.getItems()[0].setExpandable(true);
                             }
@@ -168,8 +168,8 @@ sap.ui.define(
                                 {
                                     instance: o.CONFIG_SELF
                                 },
-                                function (n, e) {
-                                    that.globalFunction.applicationDataCurrentInstanceWrite(n.CONFIG_SELF);
+                                function (aData, e) {
+                                    that.globalFunction.applicationDataCurrentInstanceWrite(aData.CONFIG_SELF);
                                     that.getInstanceInfo(undefined, jQuery.proxy(that._getInstanceInfoError, that));
                                     that.globalFunction.getCharacteristicCategoryWithGroups(jQuery.proxy(that._setCategoryModelData, that), jQuery.proxy(that._onRequestError, that));
                                     that.getProductsForSelection(undefined, undefined, jQuery.proxy(that._getProductsForSelectionError, that));
