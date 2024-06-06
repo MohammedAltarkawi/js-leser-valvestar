@@ -1,3 +1,5 @@
+/* eslint-disable no-loop-func */
+/* eslint-disable guard-for-in */
 sap.ui.define([], function () {
     "use strict";
 

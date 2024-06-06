@@ -79,19 +79,19 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
             );
         },
 
-        onAfterRendering: function (oEvent) {
-            var screenWidth = document.body.offsetWidth / 16;
-            var boxWidth = screenWidth - 6.4 + "rem";
+        onAfterRendering: function () {
+            let screenWidth = this.getView().$().width() / 16;
+            let boxWidth = screenWidth - 6.4 + "rem";
 
             // Set width of toolbar first space
             this.getView().byId("vbProdKonf").setWidth(boxWidth);
 
             sap.ui.Device.resize.attachHandler(
                 function () {
-                    var screenWidth = document.body.offsetWidth / 16;
-                    var boxWidth = screenWidth - 6.4 + "rem";
+                    let screenWidthDev = this.getView().$().width() / 16;
+                    let boxWidthDev = screenWidthDev - 6.4 + "rem";
                     // Set width of toolbar first space
-                    this.getView().byId("vbProdKonf").setWidth(boxWidth);
+                    this.getView().byId("vbProdKonf").setWidth(boxWidthDev);
                 }.bind(this),
                 this.getView().byId("vbProdKonf")
             );
@@ -161,9 +161,9 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
         onGrpChange: function (oEvent) {
             var aCustData = oEvent.getSource().getCustomData(),
                 sGrpId = "";
-            for (var j = 0; j < aCustData.length; j++) {
-                if (aCustData[j].getKey() === "grpId") {
-                    sGrpId = aCustData[j].getValue();
+            for (var i = 0; i < aCustData.length; i++) {
+                if (aCustData[i].getKey() === "grpId") {
+                    sGrpId = aCustData[i].getValue();
                 }
             }
 
@@ -173,11 +173,11 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
                 .byId("grpButtons")
                 .getItems()
                 .forEach(function (oItem) {
-                    var aCustData = oItem.getCustomData(),
+                    var aCustDataBtn = oItem.getCustomData(),
                         sGenGrpId = "";
-                    for (var j = 0; j < aCustData.length; j++) {
-                        if (aCustData[j].getKey() === "grpId") {
-                            sGenGrpId = aCustData[j].getValue();
+                    for (var j = 0; j < aCustDataBtn.length; j++) {
+                        if (aCustDataBtn[j].getKey() === "grpId") {
+                            sGenGrpId = aCustDataBtn[j].getValue();
                         }
                     }
                     if (sGenGrpId === sGrpId) {

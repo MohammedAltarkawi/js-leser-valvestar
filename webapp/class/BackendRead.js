@@ -1,3 +1,4 @@
+/* eslint-disable no-param-reassign */
 sap.ui.define(["com/leser/valvestar/class/BaseClass"], function (BaseClass) {
     "use strict";
 

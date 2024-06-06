@@ -2236,10 +2236,10 @@ sap.ui.define(
                     let data = this.applicationDataModelRead("/changedData");
 
                     data.forEach(element => {
-                        if (element.mode == "U") {
+                        if (element.mode === "U") {
                             element.value.mode = "U";
                             changeData.push(element.value);
-                        } else if (element.mode == "D") {
+                        } else if (element.mode === "D") {
                             element.value.mode = "D";
                             changeData.push(element.value);
                         }

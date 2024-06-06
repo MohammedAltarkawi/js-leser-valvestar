@@ -104,7 +104,7 @@ sap.ui.define(
                     this
                 );
 
-                var screenWidth = document.body.offsetWidth / 16;
+                var screenWidth = this.getView().$().width() / 16;
                 var toolbarMarginLeft = screenWidth - 6.4 + "rem";
 
                 // Set width of toolbar first space
@@ -112,11 +112,11 @@ sap.ui.define(
 
                 sap.ui.Device.resize.attachHandler(
                     function () {
-                        var screenWidth = document.body.offsetWidth / 16;
-                        var toolbarMarginLeft = screenWidth - 6.4 + "rem";
+                        var screenWidthDev = this.getView().$().width() / 16;
+                        var toolbarMarginLeftDev = screenWidthDev - 6.4 + "rem";
 
                         // Set width of toolbar first space
-                        this.getView().byId("hbSizing").setWidth(toolbarMarginLeft);
+                        this.getView().byId("hbSizing").setWidth(toolbarMarginLeftDev);
                     }.bind(this),
                     this.getView().byId("hbSizing")
                 );
@@ -160,15 +160,15 @@ sap.ui.define(
                     var that = this;
                     this.globalFunction.getBOMPositions({}, function (n, e) {
                         that.globalFunction.applicationDataModelWrite("/bom", n.results);
-                        var o = n.results.find(function (n) {
-                            return n.BOM_COMPNT === that.matnr;
+                        var o = n.results.find(function (aData) {
+                            return aData.BOM_COMPNT === that.matnr;
                         });
                         if (o) {
                             that.globalFunction.loadBomInstance(
                                 {
                                     instance: o.CONFIG_SELF
                                 },
-                                function (aData, e) {
+                                function (aData) {
                                     that.globalFunction.applicationDataCurrentInstanceWrite(aData.CONFIG_SELF);
                                     that.getInstanceInfo(undefined, jQuery.proxy(that._getInstanceInfoError, that));
                                     that.globalFunction.getCharacteristicCategoryWithGroups(jQuery.proxy(that._setCategoryModelData, that), jQuery.proxy(that._onRequestError, that));
@@ -268,9 +268,7 @@ sap.ui.define(
                         requiredChar.setPlaceholder(that.globalFunction.getText("reqCharMessage"));
                     });
                     if (requiredCharacteristics.length === 0) {
-                        throw {
-                            message: "Keine Pflichtmerkmale gefunden"
-                        };
+                        throw new Error("Keine Pflichtmerkmale gefunden");
                     } else {
                         return;
                     }
@@ -429,7 +427,7 @@ sap.ui.define(
                     this.globalFunction.getProductsForSelection();
                 }.bind(this); */
 
-                var fnToggle = function (evt) {
+                var fnToggle = function () {
                     var fnCarSuccess = null;
                     var fnSuccess = function (data, response) {
                         this._bExpertLoaded = true;
@@ -467,7 +465,7 @@ sap.ui.define(
                   
                     
                 }.bind(this);
-                fnToggle(evt);
+                fnToggle();
             },
 
             _fireBindingChange: function () {
@@ -627,7 +625,7 @@ sap.ui.define(
                                     var aComb = oExpGroups[key];
                                     for (var k = 0; k < aComb.length; k++) {
                                         if (k === 0) {
-                                            var oLabel = new sap.m.Label({
+                                            let oLabel = new sap.m.Label({
                                                 wrapping: false,
                                                 text: {
                                                     path: "applicationData>" + aComb[0].custPath + "/VALUE_DISP"
@@ -647,7 +645,7 @@ sap.ui.define(
                                 }
                             } else {
                                 var sObjPath = oCtx.getPath() + "/characteristics/results/" + j;
-                                var oLabel = new sap.m.Label({
+                                let oLabel = new sap.m.Label({
                                     wrapping: false,
                                     text: {
                                         path: "applicationData>" + sObjPath + "/VALUE_DISP"
