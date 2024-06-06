@@ -3,42 +3,42 @@
  */
 
 sap.ui.define([
-        "sap/ui/core/UIComponent",
-        "sap/ui/Device",
-        "com/leser/valvestar/model/models",
-        "com/leser/valvestar/class/BackendRead", 
-        "com/leser/valvestar/class/BackendWrite",
-        "sap/ui/model/json/JSONModel",
-        "sap/ui/core/Core"
-    ],
-    function (UIComponent, Device, models, BackendRead, BackendWrite,  JSONModel, Core) {
-        "use strict";
+  "sap/ui/core/UIComponent",
+  "sap/ui/Device",
+  "com/leser/valvestar/model/models",
+  "com/leser/valvestar/class/BackendRead",
+  "com/leser/valvestar/class/BackendWrite",
+  "sap/ui/model/json/JSONModel",
+  "sap/ui/core/Core"
+],
+function(UIComponent, Device, models, BackendRead, BackendWrite,  JSONModel, Core) {
+  "use strict";
 
-        return UIComponent.extend("com.leser.valvestar.Component", {
-            metadata: {
-                manifest: "json"
-            },
+  return UIComponent.extend("com.leser.valvestar.Component", {
+    metadata: {
+      manifest: "json"
+    },
 
-            /**
+    /**
              * The component is initialized by UI5 automatically during the startup of the app and calls the init method once.
              * @public
              * @override
              */
-                 init: function () {
-                // call the base component's init function
-                UIComponent.prototype.init.apply(this, arguments);
+    init: function() {
+      // call the base component's init function
+      UIComponent.prototype.init.apply(this, arguments);
 
-                // enable routing
-                this.getRouter().initialize();
+      // enable routing
+      this.getRouter().initialize();
 
-                // set the device model
-                this.setModel(models.createDeviceModel(), "device");
-                
-                Core._tvcComponent = this;
+      // set the device model
+      this.setModel(models.createDeviceModel(), "device");
 
-                //global header
-                //this.setModel(new JSONModel(), "globalHeaderModel");
-            }
-        });
+      Core._tvcComponent = this;
+
+      //global header
+      //this.setModel(new JSONModel(), "globalHeaderModel");
     }
+  });
+}
 );

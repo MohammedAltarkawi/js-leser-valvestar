@@ -1,4 +1,27 @@
 {
     "extends": "plugin:@sap-ux/eslint-plugin-fiori-tools/defaultJS",
-    "root": true
-}
+    "root": true,
+    "env": {
+      "browser": true
+    },
+    "globals": {
+      "sap": true,
+      "jQuery": true
+    },
+    "rules": {
+      // Formatting rules
+      "indent": ["error", 2],               // 2 spaces for indentation
+      "brace-style": [2, "1tbs", { "allowSingleLine": true }],  // One true brace style with single-line allowance
+      "space-before-blocks": ["error", "always"],  // Space before blocks
+      "keyword-spacing": ["error", { "before": true, "after": true }],  // Space around keywords
+      "semi": ["error", "always"],          // Always use semicolons
+      "comma-spacing": ["error", { "before": false, "after": true }],  // Space after commas
+      "key-spacing": ["error", { "beforeColon": false, "afterColon": true }],  // Space after colon in object literals
+      "space-infix-ops": "error",           // Spaces around infix operators
+      "space-in-parens": ["error", "never"],  // No spaces inside parentheses
+      "space-before-function-paren": ["error", "never"],  // No space before function parenthesis
+      "block-spacing": ["error", "always"],  // Space inside single-line blocks
+      "no-trailing-spaces": "error"          // No trailing spaces
+    }
+  }
+  
