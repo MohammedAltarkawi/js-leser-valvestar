@@ -578,6 +578,9 @@ div.customFlexBoxCharacteristicItem {
 div.startPage.sapMPage > .sapMPageHeader + section {
     top: 5rem;
 }
+.margin8rem{
+    margin-top: 8rem;
+}
 
 div.characteristicVBoxMarginBottom {
     margin-bottom: 4rem;
@@ -1105,9 +1108,10 @@ div.infoTextPopover div.sapMPopoverScroll p {
     margin: 0 3.7rem 0 3.7rem;
 }
 
-.vcConfigurationPage {
-    margin: 0 0rem 0 0rem;
-}
+/* .vcConfigurationPage {
+    margin-left: 1rem ;
+    margin-right: 1rem ;
+} */
 
 .navContainerProdFindung {
     height: 84% !important;

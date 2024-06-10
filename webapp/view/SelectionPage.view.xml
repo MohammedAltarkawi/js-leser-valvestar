@@ -22,7 +22,6 @@
                 <l:PaneContainer id="pnContSelPage">
                     <l:SplitPane>
                         <Panel
-                            id="pnTiles"
                             height="100%"
                             class="splitLayoutPanelStyle vcBackgroundPage sapUiSmallMarginBottom vcPanel"
                         >
@@ -215,9 +214,8 @@
                             </grid:CSSGrid>
                         </Panel>
                     </l:SplitPane>
-                    <l:SplitPane id="spSizingData">
+                    <l:SplitPane>
                         <Panel
-                            id="pnSizingData"
                             height="100%"
                             class="splitLayoutPanelStyle vcBackgroundPage sapUiSmallMarginBottom"
                         >

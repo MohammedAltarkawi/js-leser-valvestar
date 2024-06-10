@@ -79,7 +79,7 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
       );
     },
 
-    onAfterRendering: function() {
+    /*  onAfterRendering: function() {
       let screenWidth = this.getView().$().width() / 16;
       let boxWidth = screenWidth - 6.4 + "rem";
 
@@ -95,7 +95,7 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
         }.bind(this),
         this.getView().byId("vbProdKonf")
       );
-    },
+    }, */
 
     onLinkPressed: function(oEvent) {
       var oAtnam = oEvent.getSource().data("atnam");
