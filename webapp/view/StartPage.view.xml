@@ -122,12 +122,15 @@
                             class="headerText"
                         />
                     </VBox>
-                    <!-- <VBox class="sapUiSmallMarginBegin" alignContent="Center" alignItems="Center" visible="false">
-						<Button icon="sap-icon://action" press="onExportPress" class="vcButton sapUiNoMarginBottom headerText"/>
+                    <!-- <VBox class="sapUiSmallMarginBegin" alignContent="Center"
+                    alignItems="Center" visible="false">
+						<Button icon="sap-icon://action" press="onExportPress" class="vcButton sapUiNoMarginBottom
+                    headerText"/>
 						<Text text="{applicationData>/i18n/export}" class="headerText"/>
 					</VBox>
 					<VBox class="sapUiSmallMarginBegin" alignContent="Center" alignItems="Center" visible="false">
-						<Button icon="sap-icon://decline" press="onClosePress" class="vcButton sapUiNoMarginBottom headerText"/>
+						<Button icon="sap-icon://decline" press="onClosePress" class="vcButton sapUiNoMarginBottom
+                    headerText"/>
 						<Text text="{applicationData>/i18n/close}" class="headerText"/>
 					</VBox> -->
                 </HBox>

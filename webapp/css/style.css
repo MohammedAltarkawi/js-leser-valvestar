@@ -579,7 +579,15 @@ div.startPage.sapMPage > .sapMPageHeader + section {
     top: 5rem;
 }
 .margin8rem{
-    margin-top: 8rem;
+    margin-top: 3rem;
+}
+.valveBusyIndicatorAnimation .sapUiLocalBusyIndicatorAnimation {
+    /* position: absolute; */
+    /* width: 3em; */
+    /* top: 50%; */
+    /* left: 50%; */
+    /* transform: translate(-50%, -50%); */
+    visibility: hidden;
 }
 
 div.characteristicVBoxMarginBottom {

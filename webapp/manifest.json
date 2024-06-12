@@ -1,215 +1,219 @@
 {
-  "_version": "1.59.0",
-  "sap.app": {
-    "id": "com.leser.valvestar",
-    "type": "application",
-    "i18n": "i18n/i18n.properties",
-    "applicationVersion": {
-      "version": "0.0.1"
-    },
-    "title": "{{appTitle}}",
-    "description": "{{appDescription}}",
-    "resources": "resources.json",
-    "sourceTemplate": {
-      "id": "@sap/generator-fiori:basic",
-      "version": "1.13.0",
-      "toolsId": "d31b6213-ddc7-4002-939d-9cbb1734c9e5"
-    },
-    "dataSources": {
-      "mainService": {
-        "uri": "/sap/opu/odata/tvc/VC_UI5_V2_SRV/",
-        "type": "OData",
-        "settings": {
-          "annotations": [],
-          "localUri": "localService/metadata.xml",
-          "odataVersion": "2.0"
+    "_version": "1.59.0",
+    "sap.app": {
+        "id": "com.leser.valvestar",
+        "type": "application",
+        "i18n": "i18n/i18n.properties",
+        "applicationVersion": {
+            "version": "0.0.1"
+        },
+        "title": "{{appTitle}}",
+        "description": "{{appDescription}}",
+        "resources": "resources.json",
+        "sourceTemplate": {
+            "id": "@sap/generator-fiori:basic",
+            "version": "1.13.0",
+            "toolsId": "d31b6213-ddc7-4002-939d-9cbb1734c9e5"
+        },
+        "dataSources": {
+            "mainService": {
+                "uri": "/sap/opu/odata/tvc/VC_UI5_V2_SRV/",
+                "type": "OData",
+                "settings": {
+                    "annotations": [],
+                    "localUri": "localService/metadata.xml",
+                    "odataVersion": "2.0"
+                }
+            }
         }
-      }
+    },
+    "sap.ui": {
+        "technology": "UI5",
+        "icons": {
+            "icon": "",
+            "favIcon": "",
+            "phone": "",
+            "phone@2": "",
+            "tablet": "",
+            "tablet@2": ""
+        },
+        "deviceTypes": {
+            "desktop": true,
+            "tablet": true,
+            "phone": true
+        }
+    },
+    "sap.ui5": {
+        "flexEnabled": true,
+        "dependencies": {
+            "minUI5Version": "1.124.0",
+            "libs": {
+                "sap.m": {},
+                "sap.ui.core": {},
+                "sap.f": {},
+                "sap.suite.ui.generic.template": {},
+                "sap.ui.comp": {},
+                "sap.ui.generic.app": {},
+                "sap.ui.table": {},
+                "sap.ushell": {}
+            }
+        },
+        "contentDensities": {
+            "compact": true,
+            "cozy": true
+        },
+        "models": {
+            "i18n": {
+                "type": "sap.ui.model.resource.ResourceModel",
+                "settings": {
+                    "bundleName": "com.leser.valvestar.i18n.i18n"
+                }
+            },
+            "": {
+                "dataSource": "mainService",
+                "preload": true,
+                "settings": {}
+            },
+            "application": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "uri": "model/application.json",
+                "preload": true
+            },
+            "applicationData": {
+                "type": "sap.ui.model.json.JSONModel",
+                "settings": {},
+                "uri": "model/applicationData.json",
+                "preload": true
+            }
+        },
+        "resources": {
+            "css": [
+                {
+                    "uri": "css/style.css"
+                },
+                {
+                    "uri": "css/statusDonut.css",
+                    "id": ""
+                }
+            ]
+        },
+        "routing": {
+            "config": {
+                "routerClass": "sap.m.routing.Router",
+                "viewType": "XML",
+                "async": true,
+                "viewPath": "com.leser.valvestar.view",
+                "controlAggregation": "pages",
+                "controlId": "app",
+                "clearControlAggregation": false
+            },
+            "routes": [
+                {
+                    "pattern": "Start",
+                    "name": "startPage",
+                    "target": [
+                        "startPage"
+                    ]
+                },
+                {
+                    "name": "App",
+                    "pattern": "App",
+                    "target": [
+                        "App"
+                    ]
+                },
+                {
+                    "name": "ProductFindungStartRoute",
+                    "pattern": "ProductFindungStartRoute/{matnr}",
+                    "target": [
+                        "ProductFindungStartRoute"
+                    ]
+                },
+                {
+                    "name": "ProductFindungSizingRoute",
+                    "pattern": "ProductFindungSizingRoute/{matnr}",
+                    "target": [
+                        "ProductFindungSizingRoute"
+                    ]
+                },
+                {
+                    "name": "ProductFindungSelectionRoute",
+                    "pattern": "ProductFindungSelectionRoute/{matnr}",
+                    "target": [
+                        "ProductFindungSelectionRoute"
+                    ]
+                },
+                {
+                    "name": "ConfigurationRoute",
+                    "pattern": "ConfigurationRoute/{matnr}",
+                    "target": [
+                        "ConfigurationRoute"
+                    ]
+                }
+            ],
+            "targets": {
+                "startPage": {
+                    "viewType": "XML",
+                    "controlId": "app",
+                    "transition": "slide",
+                    "controlAggregation": "pages",
+                    "clearControlAggregation": true,
+                    "viewName": "StartPage"
+                },
+                "App": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewId": "tvcui5App",
+                    "viewName": "App"
+                },
+                "ProductFindungStartRoute": {
+                    "viewType": "XML",
+                    "controlId": "app",
+                    "transition": "slide",
+                    "controlAggregation": "pages",
+                    "clearControlAggregation": false,
+                    "viewName": "StartPage"
+                },
+                "ProductFindungSizingRoute": {
+                    "viewType": "XML",
+                    "parent": "ProductFindungStartRoute",
+                    "controlId": "navContainerProdFindung",
+                    "transition": "slide",
+                    "controlAggregation": "pages",
+                    "clearControlAggregation": false,
+                    "viewName": "SizingPage"
+                },
+                "ProductFindungSelectionRoute": {
+                    "viewType": "XML",
+                    "parent": "ProductFindungStartRoute",
+                    "controlId": "navContainerProdFindung",
+                    "transition": "slide",
+                    "controlAggregation": "pages",
+                    "clearControlAggregation": false,
+                    "viewName": "SelectionPage"
+                },
+                "ConfigurationRoute": {
+                    "viewType": "XML",
+                    "transition": "slide",
+                    "clearControlAggregation": false,
+                    "viewName": "Configuration",
+                    "controlAggregation": "pages",
+                    "controlId": "navContainerProdFindung",
+                    "parent": "ProductFindungStartRoute"
+                }
+            }
+        },
+        "rootView": {
+            "viewName": "com.leser.valvestar.view.App",
+            "type": "XML",
+            "async": true,
+            "id": "App"
+        }
+    },
+    "sap.cloud": {
+        "public": true,
+        "service": "comleservalvestar"
     }
-  },
-  "sap.ui": {
-    "technology": "UI5",
-    "icons": {
-      "icon": "",
-      "favIcon": "",
-      "phone": "",
-      "phone@2": "",
-      "tablet": "",
-      "tablet@2": ""
-    },
-    "deviceTypes": {
-      "desktop": true,
-      "tablet": true,
-      "phone": true
-    }
-  },
-  "sap.ui5": {
-    "flexEnabled": true,
-    "dependencies": {
-      "minUI5Version": "1.124.0",
-      "libs": {
-        "sap.m": {},
-        "sap.ui.core": {},
-        "sap.f": {},
-        "sap.suite.ui.generic.template": {},
-        "sap.ui.comp": {},
-        "sap.ui.generic.app": {},
-        "sap.ui.table": {},
-        "sap.ushell": {}
-      }
-    },
-    "contentDensities": {
-      "compact": true,
-      "cozy": true
-    },
-    "models": {
-      "i18n": {
-        "type": "sap.ui.model.resource.ResourceModel",
-        "settings": {
-          "bundleName": "com.leser.valvestar.i18n.i18n"
-        }
-      },
-      "": {
-        "dataSource": "mainService",
-        "preload": true,
-        "settings": {}
-      },
-      "application": {
-        "type": "sap.ui.model.json.JSONModel",
-        "settings": {},
-        "uri": "model/application.json",
-        "preload": true
-      },
-      "applicationData": {
-        "type": "sap.ui.model.json.JSONModel",
-        "settings": {},
-        "uri": "model/applicationData.json",
-        "preload": true
-      }
-    },
-    "resources": {
-      "css": [
-        {
-          "uri": "css/style.css"
-        },
-        {
-          "uri": "css/statusDonut.css",
-          "id": ""
-        }
-      ]
-    },
-    "routing": {
-      "config": {
-        "routerClass": "sap.m.routing.Router",
-        "viewType": "XML",
-        "async": true,
-        "viewPath": "com.leser.valvestar.view",
-        "controlAggregation": "pages",
-        "controlId": "app",
-        "clearControlAggregation": false
-      },
-      "routes": [
-        {
-          "pattern": "Start",
-          "name": "startPage",
-          "target": [
-            "startPage"
-          ]
-        },
-        {
-          "name": "App",
-          "pattern": "App",
-          "target": [
-            "App"
-          ]
-        },
-        {
-          "name": "ProductFindungStartRoute",
-          "pattern": "ProductFindungStartRoute/{matnr}",
-          "target": [
-            "ProductFindungStartRoute"
-          ]
-        },
-        {
-          "name": "ProductFindungSizingRoute",
-          "pattern": "ProductFindungSizingRoute/{matnr}",
-          "target": [
-            "ProductFindungSizingRoute"
-          ]
-        },
-        {
-          "name": "ProductFindungSelectionRoute",
-          "pattern": "ProductFindungSelectionRoute/{matnr}",
-          "target": [
-            "ProductFindungSelectionRoute"
-          ]
-        },
-        {
-          "name": "ConfigurationRoute",
-          "pattern": "ConfigurationRoute/{matnr}",
-          "target": [
-            "ConfigurationRoute"
-          ]
-        }
-      ],
-      "targets": {
-        "startPage": {
-          "viewType": "XML",
-          "controlId": "app",
-          "transition": "slide",
-          "controlAggregation": "pages",
-          "clearControlAggregation": true,
-          "viewName": "StartPage"
-        },
-        "App": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewId": "tvcui5App",
-          "viewName": "App"
-        },
-        "ProductFindungStartRoute": {
-          "viewType": "XML",
-          "controlId": "app",
-          "transition": "slide",
-          "controlAggregation": "pages",
-          "clearControlAggregation": false,
-          "viewName": "StartPage"
-        },
-        "ProductFindungSizingRoute": {
-          "viewType": "XML",
-          "parent": "ProductFindungStartRoute",
-          "controlId": "navContainerProdFindung",
-          "transition": "slide",
-          "controlAggregation": "pages",
-          "clearControlAggregation": false,
-          "viewName": "SizingPage"
-        },
-        "ProductFindungSelectionRoute": {
-          "viewType": "XML",
-          "parent": "ProductFindungStartRoute",
-          "controlId": "navContainerProdFindung",
-          "transition": "slide",
-          "controlAggregation": "pages",
-          "clearControlAggregation": false,
-          "viewName": "SelectionPage"
-        },
-        "ConfigurationRoute": {
-          "viewType": "XML",
-          "transition": "slide",
-          "clearControlAggregation": false,
-          "viewName": "Configuration",
-          "controlAggregation": "pages",
-          "controlId": "navContainerProdFindung",
-          "parent": "ProductFindungStartRoute"
-        }
-      }
-    },
-    "rootView": {
-      "viewName": "com.leser.valvestar.view.App",
-      "type": "XML",
-      "async": true,
-      "id": "App"
-    }
-  }
 }
