@@ -47,6 +47,15 @@ div.customBusyDialog.sapMBusyDialog.sapMDialog {
     max-height: 4rem;
     /*position: absolute;*/
 }
+.overlay {
+    background-color: rgba(128, 128, 128, 0.3);
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    z-index: 999;
+}
 
 .expTitle {
     background-color: #325064;
@@ -1279,10 +1288,10 @@ div.sizingCharacGroupSummaryVBox:hover {
 .fullWidth > div {
     width: 100%;
 }
-
+/* 
 .border {
-    /* border: 1px solid black; */
-}
+    /* border: 1px solid black; 
+} */
 
 .configBox > div {
     width: 100%;
@@ -1331,9 +1340,9 @@ div.sizingCharacGroupSummaryVBox:hover {
 .konfigGrid {
     grid-gap: 0.5rem !important;
 }
-.headerCharTable {
-    /* border: 1px solid black !important; */
-}
+/* .headerCharTable {
+     border: 1px solid black !important; 
+} */
 
 .headerCharTable .sapMListTblHeader {
     visibility: collapse !important;

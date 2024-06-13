@@ -10,7 +10,6 @@
         showHeader="true"
         enableScrolling="false"
         class="vcBackgroundPage startPage outlineDeactivate"
-        busy="{applicationData>/busyStart}"
     >
         <customHeader>
             <OverflowToolbar

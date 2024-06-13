@@ -14,7 +14,7 @@ sap.ui.define(
       onBeforeRendering: function() {
         if (this.getOwnerComponent().getRouter().getHashChanger().getHash() !== "SalesOrderList") {
           // Create and open busy dialog
-          var busyDialog = this.globalFunction.createBusyDialog();
+          var busyDialog = this.globalFunction.createBusyDialogVentil();
           busyDialog.open();
         }
 

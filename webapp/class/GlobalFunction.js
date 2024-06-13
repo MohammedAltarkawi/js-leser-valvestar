@@ -63,7 +63,7 @@ sap.ui.define(
 
         // Set article number
         var characteristic = this.getApplicationModel().getProperty("/customizing/productFindingAttrib");
-        this.applicationDataModelWrite("/busyStart", true);
+        this.setOverlayBusy(true);
         this.setCharacteristicValue(
           characteristic,
           articleNo,
@@ -94,8 +94,7 @@ sap.ui.define(
                         //error here
 
                         var fnSuccess = function(data, response) {
-                          $("body").css("cursor", "default");
-                          $("#overlay").remove();
+                          that.setOverlayBusy(false);
                           if ((data && data.VALUE !== "I") || data.messages.results.length < 1) {
                             that.getCharacteristicCategoryWithGroups(
                               function(instanceData) {
@@ -122,39 +121,37 @@ sap.ui.define(
                         that.getInstanceInfo(null, fnSuccess, fnError);
                       },
                       function() {
-                        that.applicationDataModelWrite("/busyStart", false);
+                        that.setOverlayBusy(false);
                         that._loadBomInstanceError();
                       }
                     );
                   } else {
-                    that.applicationDataModelWrite("/busyStart", false);
+                    that.setOverlayBusy(false);
                     that.loadBomInstance(
                       {
                         instance: resultInstance.CONFIG_SELF
                       },
                       null,
                       function() {
-                        that.applicationDataModelWrite("/busyStart", false);
+                        that.setOverlayBusy(false);
                         that._loadBomInstanceError();
                       }
                     );
                   }
                 } else {
-                  that.applicationDataModelWrite("/busyStart", false);
-                  $("body").css("cursor", "default");
-                  $("#overlay").remove();
+                  that.setOverlayBusy(false);
                   const oDialog = that.getErrorDialog("Instance Issue");
                   oDialog.open();
                 }
               },
               function() {
-                that.applicationDataModelWrite("/busyStart", false);
+                that.setOverlayBusy(false);
                 that._getBOMPositionsError();
               }
             );
           },
           function() {
-            that.applicationDataModelWrite("/busyStart", false);
+            that.setOverlayBusy(false);
             that.changeCharacteristicValueError();
           }
         );
@@ -524,7 +521,7 @@ sap.ui.define(
         }
       },
 
-      createBusyDialog: function() {
+      createBusyDialogVentil: function() {
         var busyDialog = new sap.m.BusyDialog("busy", {
           customIcon: "img/preloaderVentil.gif",
           customIconDensityAware: false,
@@ -535,32 +532,32 @@ sap.ui.define(
             evt.getSource().destroy();
           }
         }).addStyleClass("customBusyDialog");
-        this.applicationModelWrite("/controls/busyDialog", busyDialog);
+        this.applicationModelWrite("/controls/busyDialogVentil", busyDialog);
         return busyDialog;
       },
 
-      destroyBusyDialog: function() {
-        var busyDialog = this.applicationModelRead("/controls/busyDialog");
+      destroyBusyDialogVentil: function() {
+        var busyDialog = this.applicationModelRead("/controls/busyDialogVentil");
         if (!busyDialog) {
           return;
         }
         busyDialog.destroy();
-        this.applicationModelWrite("/controls/busyDialog", null);
+        this.applicationModelWrite("/controls/busyDialogVentil", null);
       },
 
-      getBusyDialog: function() {
-        return this.applicationModelRead("/controls/busyDialog");
+      getBusyDialogVentil: function() {
+        return this.applicationModelRead("/controls/busyDialogVentil");
       },
 
-      openBusyDialog: function() {
-        const busyDialog = this.getBusyDialog();
+      /* openBusyDialog: function() {
+        const busyDialog = this.getBusyDialogVentil();
         if (!busyDialog) {
           return null;
         }
         return busyDialog.open();
-      },
-      closeBusyDialog: function() {
-        const busyDialog = this.getBusyDialog();
+      }, */
+      closeBusyDialogVentil: function() {
+        const busyDialog = this.getBusyDialogVentil();
         if (!busyDialog || busyDialog.isDestroyed()) {
           return null;
         }
@@ -846,8 +843,7 @@ sap.ui.define(
           this._fireBindingChange();
         }
         this.applicationDataModelWrite("/characteristicCategories", aResults, bRefresh);
-        $("body").css("cursor", "default");
-        $("#overlay").remove();
+        this.setOverlayBusy(false);
         var sHash = this.getComponent().getRouter().getHashChanger().getHash();
         if (sHash.includes("ConfigurationRoute")) {
           this.populateConfigList();
@@ -1118,10 +1114,18 @@ sap.ui.define(
       deleteCurrentConfigurationForSelection: function() {
         this.applicationDataModelWrite("/currentConfigurationForSelection", null, false);
       },
+      setOverlayBusy: function(oBool) {
+        if (oBool) {
+          $("body").css("cursor", "progress");
+          $("body").append('<div id="overlay" class="overlay"></div>');
+        } else {
+          $("body").css("cursor", "default");
+          $("#overlay").remove();
+        }
+      },
 
       setCharacteristicValue: function(characteristic, characteristicValue, fnCallbackSuccess, fnCallbackError) {
-        $("body").css("cursor", "progress");
-        $("body").append('<div id="overlay" style="background-color:transparent;position:absolute;top:0;left:0;height:100%;width:100%;z-index:999"></div>');
+        this.setOverlayBusy(true);
         try {
           var rating = [
             {
@@ -2757,7 +2761,7 @@ sap.ui.define(
         if (!this.oSyncButton) {
           return;
         }
-
+        this.setOverlayBusy(bRotate);
         if (bRotate) {
           this.oSyncButton.addStyleClass("tvcRotate");
         } else {

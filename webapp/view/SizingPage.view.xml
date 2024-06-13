@@ -317,7 +317,7 @@
                             width="90%"
                             icon="sap-icon://synchronize"
                             visible="{= ${applicationData>/expertSaveMode} &amp;&amp; ${application>/customizing/sizingViewType} === '02'}"
-                            press="saveChanges"
+                            press="syncData"
                         >
                             <layoutData>
                                 <FlexItemData

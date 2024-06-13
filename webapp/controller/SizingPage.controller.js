@@ -174,7 +174,7 @@ sap.ui.define(
                   that.globalFunction.getCharacteristicCategoryWithGroups(jQuery.proxy(that._setCategoryModelData, that), jQuery.proxy(that._onRequestError, that));
                   that.getProductsForSelection(undefined, undefined, jQuery.proxy(that._getProductsForSelectionError, that));
                   that.readCurrentConfiguration();
-                  that.globalFunction.closeBusyDialog();
+                  that.globalFunction.closeBusyDialogVentil();
                 }
               );
             }
@@ -685,7 +685,7 @@ sap.ui.define(
         this.globalFunction.navigateToSelection();
       },
 
-      saveChanges: function() {
+      syncData: function() {
         this.globalFunction.applicationModelRead("/controls/langSelect").setEnabled(false);
         this.globalFunction.rotateSyncButton(true, this.byId("saveBtn"));
         this.globalFunction.saveChanges();

@@ -31,7 +31,7 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
           this.getItems().forEach(function(oItem) {
             if (oItem.getVisible()) {
               oItem.firePress();
-              that.globalFunction.applicationDataModelWrite("/busyStart", false);
+              that.globalFunction.setOverlayBusy(false);
               throw BreakException;
             }
           });
@@ -126,7 +126,7 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
             grouping.characteristics.results = grouping.characteristics.results.filter(element => !element.ATNAM.includes("UNIT"));
           });
         });
-        that.globalFunction.destroyBusyDialog();
+        that.globalFunction.destroyBusyDialogVentil();
         that.globalFunction.applicationDataModelWrite("/characteristicGroups", oResult.results);
         that.globalFunction.getApplicationDataModel().refresh();
         that.globalFunction.populateConfigList();
@@ -136,10 +136,10 @@ sap.ui.define(["com/leser/valvestar/controller/BaseController", "sap/ui/model/js
       this.globalFunction.setPressedToggleButton("idTogProdKonf");
       var oBtnGrp = this.getView().byId("grpButtons");
       if (oBtnGrp && oBtnGrp.getItems() && oBtnGrp.getItems().length > 0 && oBtnGrp.getItems()[0].getVisible()) {
-        this.globalFunction.applicationDataModelWrite("/busyStart", false);
+        this.globalFunction.setOverlayBusy(false);
       }
       this.globalFunction.applicationDataModelWrite("/saveBtn/visible", true);
-      this.globalFunction.applicationDataModelWrite("/busyStart", false);
+      this.globalFunction.setOverlayBusy(false);
       this.globalFunction.changeStatusDisplayConfigurationPage({
         STATUS: this.globalFunction.applicationDataModelRead("/configurationStatus")
       });

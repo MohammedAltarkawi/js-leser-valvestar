@@ -38,7 +38,7 @@ sap.ui.define(["com/leser/valvestar/class/BaseClass"], function(BaseClass) {
 
         if (!onError) {
           onError = function(data) {
-            this.globalFunction.applicationDataModelWrite("/busyStart", false);
+            this.globalFunction.setOverlayBusy(false);
             var oDialog = this.globalFunction.getErrorDialog(data.message);
             oDialog.open();
           }.bind(this);
@@ -117,7 +117,7 @@ sap.ui.define(["com/leser/valvestar/class/BaseClass"], function(BaseClass) {
 
         if (!onError) {
           onError = function(data) {
-            this.globalFunction.applicationDataModelWrite("/busyStart", false);
+            this.globalFunction.setOverlayBusy(false);
             var oDialog = this.globalFunction.getErrorDialog(data.message);
             oDialog.open();
           }.bind(this);
